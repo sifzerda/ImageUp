@@ -24,6 +24,14 @@ Lessons learned from building this project:
 
 - File uploading
 - File hosting
+- Learning to use new tech:
+  - Formik;
+  - Yup;
+  - Multer;
+  - graphql-upload;
+  - react-dropzone
+- d
+- d
 
 ## (2) Badges
 
@@ -63,7 +71,7 @@ npm run start
 
 ## (5) Usage
 
-xxx
+Users can create an account to save uploaded images for later retrieval.
 
 ## (6) Dev Stuff: Building:
 
@@ -74,6 +82,8 @@ xxx
 - ~~cors:~~
 - formik: react library for form building and processing.
 - yup: schema builder for value parsing and validation.
+- apollo-server-express:
+- GraphQLUpload, processRequest = require('graphql-upload'): 
 - ~~busboy:~~ used in combination with multer, a node.js module for parsing HTML form data.
 
 1. <u>'...:</u> ...
