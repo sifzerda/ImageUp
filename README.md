@@ -36,7 +36,7 @@ Lessons learned from building this project:
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) 
-~~[Formik](https://img.shields.io/badge/Formik-2563EB.svg?style=for-the-badge&logo=Formik&logoColor=white)~~
+[Formik](https://img.shields.io/badge/Formik-2563EB.svg?style=for-the-badge&logo=Formik&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -68,12 +68,12 @@ xxx
 ## (6) Dev Stuff: Building:
 
 ### Tech used:
-- Axios:
-- react-dropzone: For handling 'drag-and-drop' file uploads
-- multer: middleware for handling file uploading
-- cors:
-- ~~formik~~ replaced with matter.js
-- yup:
+- axios: promise-based JavaScript library and API to make asynchronous HTTP requests. 
+- react-dropzone: library for handling 'drag-and-drop' file uploads.
+- multer: middleware for handling file uploading.
+- ~~cors:~~
+- formik: react library for form building and processing.
+- yup: schema builder for value parsing and validation.
 - ~~busboy:~~ used in combination with multer, a node.js module for parsing HTML form data.
 
 1. <u>'...:</u> ...
