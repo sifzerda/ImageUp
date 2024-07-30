@@ -2,20 +2,23 @@ import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 const ImageUploader = () => {
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
 
   const { getRootProps, getInputProps, open } = useDropzone({
     accept: 'image/*', // This accepts all image file types
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length > 0) {
-        const file = acceptedFiles[0];
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-          setImage(reader.result);
-        };
-
-        reader.readAsDataURL(file);
+        const newImages = [];
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            newImages.push(reader.result);
+            if (newImages.length === acceptedFiles.length) {
+              setImages((prevImages) => [...prevImages, ...newImages]);
+            }
+          };
+          reader.readAsDataURL(file);
+        });
       }
     },
     onDropRejected: (fileRejections) => {
@@ -27,15 +30,19 @@ const ImageUploader = () => {
   });
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-
-      reader.readAsDataURL(file);
+    const files = Array.from(event.target.files);
+    if (files.length > 0) {
+      const newImages = [];
+      files.forEach((file) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          newImages.push(reader.result);
+          if (newImages.length === files.length) {
+            setImages((prevImages) => [...prevImages, ...newImages]);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
     }
   };
 
@@ -43,21 +50,21 @@ const ImageUploader = () => {
     <div>
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        {image ? (
-          <img src={image} alt="Uploaded" style={{ maxWidth: '100%' }} />
-        ) : (
-          <p>Drag & drop an image here</p>
-        )}
+        <p>Drag & drop images here</p>
       </div>
       <button type="button" onClick={open}>
-        Select Image
+        Select Images
       </button>
       <input
         type="file"
         accept="image/*"
+        multiple
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
+      {images.length > 0 && images.map((image, index) => (
+        <img key={index} src={image} alt={`Uploaded ${index}`} style={{ maxWidth: '100%', margin: '10px 0' }} />
+      ))}
     </div>
   );
 };
