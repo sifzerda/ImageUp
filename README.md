@@ -76,15 +76,15 @@ Users can create an account to save uploaded images for later retrieval.
 ## (6) Dev Stuff: Building:
 
 ### Tech used:
-- axios: promise-based JavaScript library and API to make asynchronous HTTP requests. 
-- react-dropzone: library for handling 'drag-and-drop' file uploads.
-- multer: middleware for handling file uploading.
-- ~~cors:~~
-- formik: react library for form building and processing.
-- yup: schema builder for value parsing and validation.
-- apollo-server-express:
-- GraphQLUpload, processRequest = require('graphql-upload'): 
-- ~~busboy:~~ used in combination with multer, a node.js module for parsing HTML form data.
+- <strong>axios:</strong> promise-based JavaScript library and API to make asynchronous HTTP requests. 
+- <strong>react-dropzone:</strong> library for handling 'drag-and-drop' file uploads.
+- <strong>multer:</strong> middleware for handling file uploading.
+- <strong>~~cors:~~</strong>
+- <strong>formik:</strong> react library for form building and processing.
+- <strong>yup:</strong> schema builder for value parsing and validation.
+- <strong>graphql-upload:</strong>
+- <strong>fs:</strong>
+- <strong>~~busboy:~~ </strong>used in combination with multer, a node.js module for parsing HTML form data.
 
 1. <u>'...:</u> ...
 2. <u>'...:</u> ...
