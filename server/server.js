@@ -5,10 +5,11 @@ const path = require('path');
 const multer = require('multer');
 const mongoose = require('mongoose');
 const { authMiddleware } = require('./utils/auth');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-const Image = require('./models/Image'); // Import the image model
 
 const PORT = process.env.PORT || 3001;
 const app = express();

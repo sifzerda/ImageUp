@@ -71,7 +71,7 @@ npm run start
 
 ## (5) Usage
 
-Users can create an account to save uploaded images for later retrieval.
+Images are uploaded and hosted on XXXXXX. If user is logged in, URLs for uploaded images are saved in user's model and can be retrieved on their profile page. Otherwise images are uploaded anonymously.
 
 ## (6) Dev Stuff: Building:
 
@@ -85,6 +85,9 @@ Users can create an account to save uploaded images for later retrieval.
 - <strong>graphql-upload:</strong>
 - <strong>fs:</strong>
 - <strong>~~busboy:~~ </strong>used in combination with multer, a node.js module for parsing HTML form data.
+- <strong>~~cloudinary:~~ </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work. 
+- <strong>~~Amazon:~~ </strong>media hosting on cloud.
+- <strong>~~Google:~~ </strong>media hosting on cloud.
 
 1. <u>'...:</u> ...
 2. <u>'...:</u> ...
@@ -146,7 +149,7 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 
 ## (14) Project status
 
-This project is complete.
+This project is incomplete.
 
 
  
