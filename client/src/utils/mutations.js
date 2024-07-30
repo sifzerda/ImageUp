@@ -7,6 +7,8 @@ export const LOGIN = gql`
       user {
         _id
         username
+        email
+        imageUrls
       }
     }
   }
@@ -19,6 +21,8 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        email
+        imageUrls
       }
     }
   }
@@ -29,21 +33,8 @@ export const REMOVE_USER = gql`
     removeUser {
       _id
       username
-    }
-  }
-`;
-
-export const SAVE_MINE_SCORE = gql`
-  mutation saveMineScore($userId: ID!, $minePoints: Int!, $mineTimeTaken: Int!) {
-    saveMineScore(userId: $userId, minePoints: $minePoints, mineTimeTaken: $mineTimeTaken) {
-      _id
-      username
       email
-      mineScore {
-        minePoints
-        mineTimeTaken
-      }
+      imageUrls
     }
   }
 `;
-

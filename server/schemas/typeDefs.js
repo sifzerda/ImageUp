@@ -4,6 +4,7 @@ const typeDefs = `
     _id: ID
     username: String
     email: String
+    imageUrls: [String]  
   }
 
   type Auth {
@@ -11,30 +12,18 @@ const typeDefs = `
     user: User
   }
 
-  type Image {
-    _id: ID
-    filename: String
-    path: String
-    userId: ID
-    uploadedAt: String
-  }
-
   type Query {
     user(userId: ID!): User
     users: [User]
-    me: User
-    images(userId: ID!): [Image]   
+    me: User 
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    updateUser(username: String, email: String, password: String): User
+    updateUser(username: String, email: String, password: String, imageUrls: [String]): User   
     login(email: String!, password: String!): Auth
-    removeUser: User
-    uploadImage(file: Upload!, userId: ID): Image   
+    removeUser: User 
   }
-
-  scalar Upload  
 `;
 
 module.exports = typeDefs;

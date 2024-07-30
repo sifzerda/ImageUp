@@ -1,8 +1,5 @@
-const { User, Image } = require('../models');
+const { User } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
-const { GraphQLUpload } = require('graphql-upload');
-const fs = require('fs');
-const path = require('path');
 
 const resolvers = {
 
@@ -22,9 +19,6 @@ const resolvers = {
       throw new AuthenticationError('You must be logged in');
     },
 
-    images: async (parent, { userId }) => {
-      return Image.find({ userId });
-    },
   },
 
   Mutation: {
@@ -69,33 +63,8 @@ const resolvers = {
       return { token, user };
     },
 
-    uploadImage: async (parent, { file, userId }) => {
-      const { createReadStream, filename } = await file;
-      const stream = createReadStream();
-      const filePath = path.join(__dirname, '../../uploads', `${Date.now()}-${filename}`);
 
-      // Save the file to the uploads directory
-      await new Promise((resolve, reject) =>
-        stream
-          .pipe(fs.createWriteStream(filePath))
-          .on('finish', resolve)
-          .on('error', reject)
-      );
-
-      // Save image metadata to the database
-      const image = new Image({
-        filename,
-        path: `/uploads/${path.basename(filePath)}`,
-        userId,
-      });
-
-      await image.save();
-
-      return image;
-    },
   },
-
-  Upload: GraphQLUpload,
 };
 
 module.exports = resolvers;

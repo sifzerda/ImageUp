@@ -20,7 +20,11 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-
+  imageUrls: {
+    type: [String], // Array of strings to store image URLs
+    default: [],   // Default value is an empty array
+  },
+  
 });
 
 // set up pre-save middleware to create password

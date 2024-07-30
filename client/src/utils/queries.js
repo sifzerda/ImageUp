@@ -6,16 +6,18 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      imageUrls
     }
   }
 `;
 
 export const QUERY_USERS = gql`
-  {
+  query {
     users {
       _id
       username
       email
+      imageUrls
     }
   }
 `;
@@ -26,8 +28,7 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      imageUrls
     }
   }
 `;
-
-
