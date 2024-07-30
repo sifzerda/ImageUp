@@ -4,13 +4,6 @@ const typeDefs = `
     _id: ID
     username: String
     email: String
-    password: String
-    mineScore: [MineScore]
-  }
-
-    type MineScore {
-    minePoints: Int
-    mineTimeTaken: Int
   }
 
   type Auth {
@@ -18,11 +11,19 @@ const typeDefs = `
     user: User
   }
 
+  type Image {
+    _id: ID
+    filename: String
+    path: String
+    userId: ID
+    uploadedAt: String
+  }
+
   type Query {
     user(userId: ID!): User
     users: [User]
     me: User
-    getMineScore(userId: ID!): [MineScore]
+    images(userId: ID!): [Image]   
   }
 
   type Mutation {
@@ -30,8 +31,10 @@ const typeDefs = `
     updateUser(username: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
     removeUser: User
-    saveMineScore(userId: ID!, minePoints: Int!, mineTimeTaken: Int!): User
+    uploadImage(file: Upload!, userId: ID): Image   
   }
+
+  scalar Upload  
 `;
 
 module.exports = typeDefs;

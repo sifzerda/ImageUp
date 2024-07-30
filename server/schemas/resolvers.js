@@ -1,10 +1,12 @@
-const { User } = require('../models');
+const { User, Image } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const { GraphQLUpload } = require('graphql-upload');
+const fs = require('fs');
+const path = require('path');
 
 const resolvers = {
 
   Query: {
-
     users: async () => {
       return User.find();
     },
@@ -20,18 +22,12 @@ const resolvers = {
       throw new AuthenticationError('You must be logged in');
     },
 
-    getMineScore: async (parent, { userId }) => {
-      const user = await User.findById(userId);
-      if (!user) {
-        throw new Error('User not found');
-      }
-      return user.mineScore;
+    images: async (parent, { userId }) => {
+      return Image.find({ userId });
     },
-
   },
 
   Mutation: {
-
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
@@ -73,19 +69,33 @@ const resolvers = {
       return { token, user };
     },
 
-    saveMineScore: async (parent, { userId, minePoints, mineTimeTaken }) => {
-      const updatedUser = await User.findByIdAndUpdate(
-        userId,
-        { $push: { mineScore: { minePoints, mineTimeTaken } } },
-        { new: true }
-      );
-      if (!updatedUser) {
-        throw new Error('User not found');
-      }
-      return updatedUser;
-    },
+    uploadImage: async (parent, { file, userId }) => {
+      const { createReadStream, filename } = await file;
+      const stream = createReadStream();
+      const filePath = path.join(__dirname, '../../uploads', `${Date.now()}-${filename}`);
 
+      // Save the file to the uploads directory
+      await new Promise((resolve, reject) =>
+        stream
+          .pipe(fs.createWriteStream(filePath))
+          .on('finish', resolve)
+          .on('error', reject)
+      );
+
+      // Save image metadata to the database
+      const image = new Image({
+        filename,
+        path: `/uploads/${path.basename(filePath)}`,
+        userId,
+      });
+
+      await image.save();
+
+      return image;
+    },
   },
+
+  Upload: GraphQLUpload,
 };
 
 module.exports = resolvers;
