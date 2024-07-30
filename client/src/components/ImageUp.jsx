@@ -5,7 +5,7 @@ const ImageUploader = () => {
   const [images, setImages] = useState([]);
 
   const { getRootProps, getInputProps, open } = useDropzone({
-    accept: 'image/*', // This accepts all image file types
+    accept: 'image/*', // accepts all image file types
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length > 0) {
         const newImages = [];
@@ -25,8 +25,7 @@ const ImageUploader = () => {
       fileRejections.forEach(({ file, errors }) => {
         console.log(`File ${file.name} rejected due to ${errors.map(e => e.message).join(', ')}`);
       });
-    },
-    noClick: true, // Disable the click behavior of the dropzone
+    }
   });
 
   const handleFileChange = (event) => {
@@ -50,7 +49,7 @@ const ImageUploader = () => {
     <div>
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        <p>Drag & drop images here</p>
+        <p>Drag & drop images here, or click to select images</p>
       </div>
       <button type="button" onClick={open}>
         Select Images
