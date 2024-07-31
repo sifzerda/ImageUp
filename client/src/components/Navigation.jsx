@@ -56,7 +56,7 @@ return (
   <ul className="nav nav-tabs">
     <li className="nav-item">
       <Link to="/" className={isActive('/')}>
-        GAME
+        ???
       </Link>
     </li>
 
@@ -65,8 +65,6 @@ return (
         IMAGE UPLOAD
       </Link>
     </li>
-
-
 
     {/* ---------------------------------- log in conditional function --------------------------------  */}
 
