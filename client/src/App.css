@@ -329,6 +329,17 @@ p {
 
 /* Footer -------------------------------------------------------------- */
 
+/* Row and column styles */
+footer .row {
+  display: flex;
+  justify-content: center;
+  padding: 1px;
+}
+
+footer .col-lg-8 {
+  max-width: 80%;
+}
+
 p.footer-text {
   color: white;
 }
