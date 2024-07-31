@@ -57,7 +57,9 @@ container name: imageupcontainer99
 
 ## (1) Description
 
-A small project to make an image uploading and hosting app.
+A small project to make an image uploading and hosting app. Image hosting through a free tier account (1 year trial) on Microsoft Azure.
+
+Images are sent to my storage container on Azure, and retrieved from the container and displayed on the page, with newly created URL
 
 Lessons learned from building this project:
 
@@ -69,8 +71,9 @@ Lessons learned from building this project:
   - Multer;
   - graphql-upload;
   - react-dropzone
-- d
-- d
+- Cloud Storage
+- Implement cloud hosting first, rather than uploading. Harder to get cloud into working uploading code, than uploading into working cloud hosting code. 
+-
 
 ## (2) Badges
 
@@ -108,33 +111,45 @@ npm install imageup
 npm run start
 ```
 
-Image hosting through Firebase Cloud API. Keys and authentication protected by firebase config js and .env file. 
+Image hosting through Microsoft Azure Blob Storage.
 
-process.env.REACT_APP_FIREBASE_API_KEY isn't recognized; you have to put:
+process.env not recognized in vite react unless you modify vite.config file:
 
 ```bash
-  apiKey: import.meta.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: import.meta.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.REACT_APP_FIREBASE_APP_ID,
-```
-inside the firebase config file.
+import { defineConfig, loadEnv } from 'vite'
+import react from '@vitejs/plugin-react'
 
-.env file:
-```bash
-REACT_APP_FIREBASE_API_KEY=[...]
-REACT_APP_FIREBASE_AUTH_DOMAIN=[...]
-REACT_APP_FIREBASE_PROJECT_ID=[...]
-REACT_APP_FIREBASE_STORAGE_BUCKET=[...]
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=[...]
-REACT_APP_FIREBASE_APP_ID=[...]
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+  return {
+    define: {
+      'process.env.SOME_KEY': JSON.stringify(env.SOME_KEY)
+    },
+    plugins: [react()],
+    server: {
+      port: 3000,
+      open: true,
+      proxy: {
+        '/graphql': {
+          target: 'http://localhost:3001',
+          secure: false,
+          changeOrigin: true
+        }
+      }
+    }, 
+    test: {
+      environment: 'happy-dom',
+      globals: true
+    }
+
+  }
+})
 ```
 
 ## (5) Usage
 
-Images are uploaded and hosted on XXXXXX. If user is logged in, URLs for uploaded images are saved in user's model and can be retrieved on their profile page. Otherwise images are uploaded anonymously.
+Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploaded images are saved in user's model and can be retrieved on their profile page. Otherwise images are uploaded anonymously.
 
 ## (6) Dev Stuff: Building:
 
@@ -142,15 +157,13 @@ Images are uploaded and hosted on XXXXXX. If user is logged in, URLs for uploade
 - <strong>axios:</strong> promise-based JavaScript library and API to make asynchronous HTTP requests. 
 - <strong>react-dropzone:</strong> library for handling 'drag-and-drop' file uploads.
 - <strong>multer:</strong> middleware for handling file uploading.
-- <strong>~~cors:~~</strong>
+- <strong>cors:</strong>
 - <strong>formik:</strong> react library for form building and processing.
 - <strong>yup:</strong> schema builder for value parsing and validation.
-- <strong>graphql-upload:</strong>
-- <strong>fs:</strong>
-- <strong>~~busboy:~~ </strong>used in combination with multer, a node.js module for parsing HTML form data.
 - <strong>~~cloudinary:~~ </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work. 
 - <strong>~~Amazon:~~ </strong>media hosting on cloud.
 - <strong>~~Google:~~ </strong>media hosting on cloud.
+- <strong>~~azure/storage-blob :~~ </strong> Client library providing object storage in cloud.
 
 1. <u>'...:</u> ...
 2. <u>'...:</u> ...
