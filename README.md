@@ -1,42 +1,3 @@
-•  Cloud Storage Services:
-
-•	~~Amazon S3: Provides scalable object storage. You can use AWS SDKs or libraries like aws-sdk to interact with S3.~~ couldn't create user
-•	~~Google Cloud Storage: Similar to S3, but part of Google Cloud Platform. Use @google-cloud/storage to interact with it.~~ issue
-•	Microsoft Azure Blob Storage: Offers scalable storage with integration through Azure SDKs.
-- ~~firebase -- ~~ free but wouldn't work
-
-•  Image Hosting Services:
-
-•	~~Cloudinary: Provides an image and video management service with APIs for uploading, storing, and manipulating images. It also offers free tiers and easy integration.~~ 
-~~•	Imgur: A popular image hosting service with a straightforward API. Good for smaller projects or testing.~~ (not free)
-•	Flickr: Offers image hosting with API access. It's more oriented towards photo-sharing but can be used for hosting as well.
- 
-•  Custom Hosting:
-
-•	Your Own Server: You can host images on your own server or infrastructure. This gives you full control but requires more setup and maintenance.
-•	CDN Services: Using Content Delivery Networks like Cloudflare or Fastly can help cache and serve images more efficiently.
-•  Integrated Hosting with CMS:
-•	WordPress: If using WordPress as a CMS, you can use its media library to host images.
-~~•	Strapi: A headless CMS that can manage and serve media files.~~ (not free, 14 day trial)
-
-
-
-~~Google Cloud Service account:~~
-
-~~Service account name: imageUp~~
-~~service account ID: imageUp~~
-~~service account description: image hosting~~
-~~account role: storage admin~~
-key created: ~~eighth-anvil-392911-25f0ed329340~~
-
-
-Microsoft Azure Blob Storage:
-
-resource group name: resourcegroup1
-storage account name: imageupstorageaccount99
-container name: imageupcontainer99
-
-
 # IMAGE UP 🖼️🢁
 
 ## Table of Contents
@@ -163,7 +124,7 @@ Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploa
 - <strong>~~cloudinary:~~ </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work. 
 - <strong>~~Amazon:~~ </strong>media hosting on cloud.
 - <strong>~~Google:~~ </strong>media hosting on cloud.
-- <strong>~~azure/storage-blob :~~ </strong> Client library providing object storage in cloud.
+- <strong>azure/storage-blob: </strong> Client library providing object storage in cloud.
 
 1. <u>'...:</u> ...
 2. <u>'...:</u> ...
@@ -181,19 +142,19 @@ xxx
 
 ## (7) Bugs: 
 
-- xxx
+- Could not get Firebase cloud service to host images, will try with new component
 
 ## (8) To do: 
 
 - [x] create image uploading
-- [ ] upload multiple images
-- [ ] store uploaded images
+- [x] upload multiple images
+- [x] store uploaded images
   - [ ] local storage;
   - [ ] if user logged on
   - [ ] restrict image uploading to registered users and when upload images, auto save to their user record - to retrieve when site returned to
-- [ ] images get unique url so they can be viewed image alone on separate page (i.e. openeed as new tab and linked in url and shared)
+- [x] images get unique url so they can be viewed image alone on separate page (i.e. openeed as new tab and linked in url and shared)
 - [ ]
-- [ ] 
+- [ ] make some graphql queries and mutations to store uploaded cloud images urls to be retrievable when users log in again
 - [ ] 
 - [ ] 
 - [ ] 
@@ -225,7 +186,7 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 
 ## (14) Project status
 
-This project is incomplete.
+This project is complete.
 
 
  
