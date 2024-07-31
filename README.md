@@ -1,13 +1,14 @@
 •  Cloud Storage Services:
 
-•	Amazon S3: Provides scalable object storage. You can use AWS SDKs or libraries like aws-sdk to interact with S3.
-•	Google Cloud Storage: Similar to S3, but part of Google Cloud Platform. Use @google-cloud/storage to interact with it.
+•	~~Amazon S3: Provides scalable object storage. You can use AWS SDKs or libraries like aws-sdk to interact with S3.~~ couldn't create user
+•	~~Google Cloud Storage: Similar to S3, but part of Google Cloud Platform. Use @google-cloud/storage to interact with it.~~ issue
 •	Microsoft Azure Blob Storage: Offers scalable storage with integration through Azure SDKs.
+- ~~firebase -- ~~ free but wouldn't work
 
 •  Image Hosting Services:
 
-•	~~Cloudinary: Provides an image and video management service with APIs for uploading, storing, and manipulating images. It also offers free tiers and easy integration.~~
-•	Imgur: A popular image hosting service with a straightforward API. Good for smaller projects or testing.
+•	~~Cloudinary: Provides an image and video management service with APIs for uploading, storing, and manipulating images. It also offers free tiers and easy integration.~~ 
+~~•	Imgur: A popular image hosting service with a straightforward API. Good for smaller projects or testing.~~ (not free)
 •	Flickr: Offers image hosting with API access. It's more oriented towards photo-sharing but can be used for hosting as well.
  
 •  Custom Hosting:
@@ -16,17 +17,25 @@
 •	CDN Services: Using Content Delivery Networks like Cloudflare or Fastly can help cache and serve images more efficiently.
 •  Integrated Hosting with CMS:
 •	WordPress: If using WordPress as a CMS, you can use its media library to host images.
-•	Strapi: A headless CMS that can manage and serve media files.
+~~•	Strapi: A headless CMS that can manage and serve media files.~~ (not free, 14 day trial)
 
 
 
-Google Cloud Service account:
+~~Google Cloud Service account:~~
 
 ~~Service account name: imageUp~~
 ~~service account ID: imageUp~~
 ~~service account description: image hosting~~
 ~~account role: storage admin~~
 key created: ~~eighth-anvil-392911-25f0ed329340~~
+
+
+Microsoft Azure Blob Storage:
+
+resource group name: resourcegroup1
+storage account name: imageupstorageaccount99
+container name: imageupcontainer99
+
 
 # IMAGE UP 🖼️🢁
 

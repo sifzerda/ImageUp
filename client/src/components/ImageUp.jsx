@@ -1,97 +1,57 @@
-import { useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import React, { useState } from 'react';
+import { BlobServiceClient } from '@azure/storage-blob';
 
-const ImageUploader = () => {
-  const [images, setImages] = useState([]);
+const containerName = 'imageupcontainer99';
+const sasToken = 'sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2027-08-01T00:37:27Z&st=2024-07-31T16:37:27Z&spr=https&sig=0XLu4HxQ2B9ViuV8T6%2Banh5SogTLmak81IqjMivOG6I%3D'; // Replace with your SAS token
+const accountName = 'imageupstorageaccount99'; 
+const blobServiceClient = new BlobServiceClient(
+  `https://${accountName}.blob.core.windows.net?${sasToken}`
+);
 
-  const formik = useFormik({
-    initialValues: {
-      images: []
-    },
-    validationSchema: Yup.object({
-      images: Yup.array().of(
-        Yup.mixed().test(
-          'fileType',
-          'Unsupported File Format',
-          (value) => value && ['image/jpeg', 'image/png', 'image/gif'].includes(value.type)
-        )
-      )
-    }),
-    onSubmit: (values) => {
-      console.log('Uploaded Images:', values.images);
-    }
-  });
+const FileUpload = () => {
+  const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadedUrl, setUploadedUrl] = useState('');
 
-  const { getRootProps, getInputProps, open } = useDropzone({
-    accept: 'image/*',
-    onDrop: (acceptedFiles) => {
-      if (acceptedFiles.length > 0) {
-        const newImages = [];
-        acceptedFiles.forEach((file) => {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            newImages.push(reader.result);
-            if (newImages.length === acceptedFiles.length) {
-              setImages((prevImages) => [...prevImages, ...newImages]);
-              formik.setFieldValue('images', [...formik.values.images, ...acceptedFiles]);
-            }
-          };
-          reader.readAsDataURL(file);
-        });
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!file) return;
+    setUploading(true);
+
+    try {
+      const containerClient = blobServiceClient.getContainerClient(containerName);
+      
+      // Check if the container exists (optional, for debugging)
+      const containerExists = await containerClient.exists();
+      if (!containerExists) {
+        console.log('Container does not exist.');
+        return;
       }
-    },
-    onDropRejected: (fileRejections) => {
-      fileRejections.forEach(({ file, errors }) => {
-        console.log(`File ${file.name} rejected due to ${errors.map(e => e.message).join(', ')}`);
-      });
-    }
-  });
-
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    if (files.length > 0) {
-      const newImages = [];
-      files.forEach((file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          newImages.push(reader.result);
-          if (newImages.length === files.length) {
-            setImages((prevImages) => [...prevImages, ...newImages]);
-            formik.setFieldValue('images', [...formik.values.images, ...files]);
-          }
-        };
-        reader.readAsDataURL(file);
-      });
+      
+      const blobClient = containerClient.getBlockBlobClient(file.name);
+      const uploadBlobResponse = await blobClient.uploadBrowserData(file);
+      const blobUrl = blobClient.url;
+      setUploadedUrl(blobUrl);
+      console.log('Upload complete:', uploadBlobResponse);
+    } catch (error) {
+      console.error('Upload error:', error);
+    } finally {
+      setUploading(false);
     }
   };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div {...getRootProps({ className: 'dropzone' })}>
-        <input {...getInputProps()} />
-        <p>Drag & drop images here, or click to select images</p>
-      </div>
-      <button type="button" onClick={open}>
-        Select Images
+    <div>
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload} disabled={uploading}>
+        {uploading ? 'Uploading...' : 'Upload'}
       </button>
-      <input
-        type="file"
-        accept="image/*"
-        multiple
-        style={{ display: 'none' }}
-        onChange={handleFileChange}
-      />
-      {images.length > 0 && images.map((image, index) => (
-        <img key={index} src={image} alt={`Uploaded ${index}`} style={{ maxWidth: '100%', margin: '10px 0' }} />
-      ))}
-      {formik.errors.images && formik.touched.images ? (
-        <div>{formik.errors.images}</div>
-      ) : null}
-      <button type="submit">Submit</button>
-    </form>
+      {uploadedUrl && <p>File URL: <a href={uploadedUrl} target="_blank" rel="noopener noreferrer">{uploadedUrl}</a></p>}
+    </div>
   );
 };
 
-export default ImageUploader;
+export default FileUpload;
