@@ -1,23 +1,4 @@
-.dropzone {
-  border: 2px dashed #cccccc;
-  border-radius: 4px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  background-color: #f9f9f9;
-}
-
-.dropzone:hover {
-  background-color: #e9e9e9;
-}
-
-  .dropzone p {
-    margin: 0;
-    color: #007bff;
-  }
-
-  /* FileUpload.css */
-
+/* FileUpload.css */
 .upload-header {
   font-size: 24px;
   margin-bottom: 20px;
@@ -29,6 +10,23 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+}
+
+/* Drag-and-drop area styling */
+.upload-box {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.upload-box:hover {
+  background-color: #fcff58;
+  border: dashed 2px  #007bff;
 }
 
 .file-input-container input[type="file"] {
@@ -48,6 +46,10 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
 }
 
 .upload-button:disabled {
@@ -76,4 +78,31 @@
   max-width: 100%;
   height: auto;
   border-radius: 4px;
+}
+
+.input-submit-button {
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* File input button styling */
+.input-submit-button {
+  display: block;
+  margin: 20px 0;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.input-submit-button:hover {
+  background-color: #0056b3;
+}
+
+.input-submit-button::-webkit-file-upload-button {
+  cursor: pointer;
 }

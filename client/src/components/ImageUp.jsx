@@ -55,29 +55,31 @@ const FileUpload = () => {
   });
 
   return (
-    <div>
-      <div {...getRootProps()} style={{ border: '2px dashed #ccc', padding: '20px', textAlign: 'center', cursor: 'pointer' }}>
+    <div className="upload-container">
+      <div className="upload-header">Image Upload</div>
+
+      <div className='upload-box' {...getRootProps()}>
         <input {...getInputProps()} />
-        <p>Drag and drop an image here, or click to select one</p>
+        <p className='black-text'>Drag and drop an image here, or click to select one</p>
       </div>
       <div>
-        <input type="file" onChange={(e) => handleUpload(e.target.files[0])} />
-        <button onClick={() => handleUpload(file)} disabled={uploading}>
+        <input className='input-submit-button' type="file" onChange={(e) => handleUpload(e.target.files[0])} />
+        <button className='upload-button' onClick={() => handleUpload(file)} disabled={uploading}>
           {uploading ? 'Uploading...' : 'Upload'}
         </button>
       </div>
-      <div>
+      <div className="uploaded-images">
         {uploadedUrls.length > 0 && (
           <div>
             <h3>Uploaded Images:</h3>
             {uploadedUrls.map((url, index) => (
-              <div key={index} style={{ marginBottom: '10px' }}>
+              <div key={index}>
                 <p>File URL:</p>
                 <a href={url} target="_blank" rel="noopener noreferrer">
                   {url}
                 </a>
                 <p>Uploaded Image:</p>
-                <img src={url} alt={`Uploaded ${index}`} style={{ maxWidth: '100%', height: 'auto' }} />
+                <img src={url} alt={`Uploaded ${index}`} />
               </div>
             ))}
           </div>
