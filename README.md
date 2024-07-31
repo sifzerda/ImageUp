@@ -20,6 +20,13 @@
 
 
 
+Google Cloud Service account:
+
+~~Service account name: imageUp~~
+~~service account ID: imageUp~~
+~~service account description: image hosting~~
+~~account role: storage admin~~
+key created: ~~eighth-anvil-392911-25f0ed329340~~
 
 # IMAGE UP 🖼️🢁
 
@@ -90,6 +97,30 @@ git clone https://github.com/sifzerda/ImageUp.git
 cd snake
 npm install imageup
 npm run start
+```
+
+Image hosting through Firebase Cloud API. Keys and authentication protected by firebase config js and .env file. 
+
+process.env.REACT_APP_FIREBASE_API_KEY isn't recognized; you have to put:
+
+```bash
+  apiKey: import.meta.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: import.meta.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.REACT_APP_FIREBASE_APP_ID,
+```
+inside the firebase config file.
+
+.env file:
+```bash
+REACT_APP_FIREBASE_API_KEY=[...]
+REACT_APP_FIREBASE_AUTH_DOMAIN=[...]
+REACT_APP_FIREBASE_PROJECT_ID=[...]
+REACT_APP_FIREBASE_STORAGE_BUCKET=[...]
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=[...]
+REACT_APP_FIREBASE_APP_ID=[...]
 ```
 
 ## (5) Usage
