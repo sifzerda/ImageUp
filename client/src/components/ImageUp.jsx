@@ -34,7 +34,7 @@ const FileUpload = () => {
       const blobClient = containerClient.getBlockBlobClient(file.name);
       const uploadBlobResponse = await blobClient.uploadBrowserData(file);
       const blobUrl = blobClient.url;
-      setUploadedUrl(blobUrl);
+      setUploadedUrl(blobUrl); // Set the URL of the uploaded image
       console.log('Upload complete:', uploadBlobResponse);
     } catch (error) {
       console.error('Upload error:', error);
@@ -49,7 +49,16 @@ const FileUpload = () => {
       <button onClick={handleUpload} disabled={uploading}>
         {uploading ? 'Uploading...' : 'Upload'}
       </button>
-      {uploadedUrl && <p>File URL: <a href={uploadedUrl} target="_blank" rel="noopener noreferrer">{uploadedUrl}</a></p>}
+      {uploadedUrl && (
+        <div>
+          <p>File URL:</p>
+          <a href={uploadedUrl} target="_blank" rel="noopener noreferrer">
+            {uploadedUrl}
+          </a>
+          <p>Uploaded Image:</p>
+          <img src={uploadedUrl} alt="Uploaded" style={{ maxWidth: '100%', height: 'auto' }} />
+        </div>
+      )}
     </div>
   );
 };
