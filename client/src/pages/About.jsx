@@ -1,5 +1,5 @@
 import '../App.css';
-import Minesweeper from '../components/Minesweeper';
+import  ImageUp from '../components/ImageUp';
 import '../minesweeper.css';
 import '../image.css';
 
@@ -15,7 +15,7 @@ export default function About () {
 
 <div className='grid-wrapper'>
 <div className='white-box'>
-      <Minesweeper />
+      <ImageUp />
 </div>
 </div>
 {/* -------------- */}

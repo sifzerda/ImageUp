@@ -34,7 +34,6 @@ Lessons learned from building this project:
   - react-dropzone
 - Cloud Storage
 - Implement cloud hosting first, rather than uploading. Harder to get cloud into working uploading code, than uploading into working cloud hosting code. 
--
 
 ## (2) Badges
 

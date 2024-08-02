@@ -5,38 +5,48 @@ import '../minesweeper.css';
 import '../image.css';
 
 const Profile = () => {
-    const { data: userData, loading: userLoading, error: userError } = useQuery(QUERY_ME);
+  const { data: userData, loading: userLoading, error: userError } = useQuery(QUERY_ME);
 
-    if (userLoading) return <p>Loading user...</p>;
-    if (userError) return <p>Error fetching user: {userError.message}</p>;
-  
-    const userId = userData.me._id;
-  
-    // Query to get images for the current user
-    const { data: imagesData, loading: imagesLoading, error: imagesError } = useQuery(QUERY_IMAGES, {
-      variables: { userId },
-    });
-  
-    if (imagesLoading) return <p>Loading images...</p>;
-    if (imagesError) return <p>Error fetching images: {imagesError.message}</p>;
-  
-    return (
-      <div>
-        <h1>Your Uploaded Images</h1>
-        {imagesData.images.length === 0 ? (
-          <p>You have not uploaded any images yet.</p>
-        ) : (
-          <div>
-            {imagesData.images.map((image) => (
-              <div key={image._id}>
-                <img src={image.path} alt={image.filename} style={{ width: '200px', height: 'auto' }} />
-                <p>{image.filename}</p>
+  // Log the loading state
+  console.log('Loading user data:', userLoading);
+
+  // Log the error, if any
+  if (userError) {
+    console.error('Error fetching user:', userError.message);
+  }
+
+  // Log the fetched data
+  console.log('Fetched user data:', userData);
+
+  if (userLoading) return <p>Loading user...</p>;
+  if (userError) return <p>Error fetching user: {userError.message}</p>;
+
+  const user = userData.me;
+
+  // Log the user's image URLs
+  console.log('User image URLs:', user.imageUrls);
+
+  return (
+    <div>
+      <h1>Your Uploaded Images</h1>
+      {user.imageUrls && user.imageUrls.length === 0 ? (
+        <p>You have not uploaded any images yet.</p>
+      ) : (
+        <div>
+          {user.imageUrls && user.imageUrls.length > 0 ? (
+            user.imageUrls.map((url, index) => (
+              <div key={index}>
+                <img src={url} alt={`Uploaded ${index}`} style={{ width: '200px', height: 'auto' }} />
+                <p>Image {index + 1}</p>
               </div>
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  };
+            ))
+          ) : (
+            <p>No images found.</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Profile;

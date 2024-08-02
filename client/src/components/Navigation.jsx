@@ -56,12 +56,6 @@ return (
   <ul className="nav nav-tabs">
     <li className="nav-item">
       <Link to="/" className={isActive('/')}>
-        ???
-      </Link>
-    </li>
-
-    <li className="nav-item">
-      <Link to="/image" className={isActive('/image')}>
         IMAGE UPLOAD
       </Link>
     </li>

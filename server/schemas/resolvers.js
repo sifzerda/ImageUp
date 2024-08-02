@@ -18,7 +18,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You must be logged in');
     },
-
   },
 
   Mutation: {
@@ -28,14 +27,28 @@ const resolvers = {
       return { token, user };
     },
 
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
+
+  updateUser: async (parent, { username, email, password, imageUrls }, context) => {
+    if (context.user) {
+      // Create an update object
+      const updateFields = {};
+      if (username) updateFields.username = username;
+      if (email) updateFields.email = email;
+      if (password) updateFields.password = password;
+
+      // Append each new image URL to the existing array
+      if (imageUrls && imageUrls.length > 0) {
+        await User.updateOne(
+          { _id: context.user._id },
+          { $push: { imageUrls: { $each: imageUrls } } }
+        );
       }
-      throw new AuthenticationError('You must be logged in to update your profile');
-    },
+
+      // Update other fields
+      return await User.findByIdAndUpdate(context.user._id, { $set: updateFields }, { new: true });
+    }
+    throw new AuthenticationError('You must be logged in to update your profile');
+    },  
 
     removeUser: async (parent, args, context) => {
       if (context.user) {
@@ -63,8 +76,8 @@ const resolvers = {
       return { token, user };
     },
 
-
   },
-};
+}
+ 
 
 module.exports = resolvers;

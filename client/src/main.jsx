@@ -8,9 +8,6 @@ import Error from './pages/Error.jsx';
 import About from './pages/About.jsx';
 import Profile from './pages/Profile.jsx';
 
-import ImageUp from './pages/ImageUp.jsx';
-// subjects
-
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 
@@ -38,11 +35,6 @@ const router = createBrowserRouter([
       {
         path: '/Profile',
         element: <Profile />
-      },
-
-      {
-        path: '/Image',
-        element: <ImageUp />
       },
 
     ],
