@@ -130,5 +130,16 @@ p.success-message {
   padding: 5px;
   border-radius: 4px;
   justify-content: center;
+}
+
+p.black-text-2 {
+  color: rgb(217, 255, 0);
+  font-size: 16px;
+  margin: 20px 0;
+  background-color: black;
+  border: 2px solid var(--lblue);
+  padding: 5px;
+  border-radius: 4px;
+  justify-content: center;
 
 }

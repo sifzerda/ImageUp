@@ -11,14 +11,6 @@
   border: 5px solid var(--midnight);
 }
 
-@keyframes neon-flashing {
-  from {
-    text-shadow: 0 0 10px  white, 0 0 20px var(--volt), 0 0 30px var(--volt), 0 0 40px var(--volt), 0 0 70px #00fff6, 0 0 80px #00fff6;
-  }
-  to {
-    text-shadow: none;
-  }}
-
 .grid-wrapper {
     display: flex;
     justify-content: center;
@@ -43,7 +35,6 @@
     display: grid;
     min-width: 900px;
     place-items: center; 
-    
   }
 
 .submit-button-m {

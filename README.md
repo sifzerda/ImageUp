@@ -67,8 +67,8 @@ Lessons learned from building this project:
 
 ```bash
 git clone https://github.com/sifzerda/ImageUp.git
-cd snake
-npm install imageup
+cd imageUp
+npm install
 npm run start
 ```
 
@@ -110,7 +110,7 @@ export default defineConfig(({ mode }) => {
 
 ## (5) Usage
 
-Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploaded images are saved in user's model and can be retrieved on their profile page. Otherwise images are uploaded anonymously.
+Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploaded images can be saved in user's model and can be retrieved on their profile page. This is recommended otherwise user will lose access to image.
 
 ## (6) Dev Stuff: Building:
 
@@ -126,19 +126,12 @@ Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploa
 - <strong>~~Google:~~ </strong>media hosting on cloud.
 - <strong>azure/storage-blob: </strong> Client library providing object storage in cloud.
 
-1. <u>'...:</u> ...
-2. <u>'...:</u> ...
-3. <u>'...:</u> ...
-4. <u>'...:</u> ...
-5. <u>'...:</u> ...
-6. <u>'...:</u> ...
-7. <u>'...:</u> ...
-8. <u>'...:</u> ...
-9. <u>'...:</u> ...
+1. <u>'const handleUpload':</u> uploads image and also sends to MS Azure cloud container.
+2. <u>'const handleSave':</u> onclick handler which writes uploaded image to logged in user's imageUrls array.
 
 ### Alternate Config:
 
-xxx
+N/A
 
 ## (7) Bugs: 
 
@@ -150,14 +143,10 @@ xxx
 - [x] upload multiple images
 - [x] store uploaded images
   - [ ] local storage;
-  - [ ] if user logged on
-  - [ ] restrict image uploading to registered users and when upload images, auto save to their user record - to retrieve when site returned to
+  - ~~[ ] if user logged on~~
+  - ~~[ ] restrict image uploading to registered users and when upload images, auto save to their user record - to retrieve when site returned to~~
 - [x] images get unique url so they can be viewed image alone on separate page (i.e. openeed as new tab and linked in url and shared)
-- [ ]
-- [ ] make some graphql queries and mutations to store uploaded cloud images urls to be retrievable when users log in again
-- [ ] 
-- [ ] 
-- [ ] 
+- [x] make some graphql queries and mutations to store uploaded cloud images urls to be retrievable when users log in again
 
 ## (10) Support
 

@@ -3,6 +3,7 @@ import { BlobServiceClient } from '@azure/storage-blob';
 import { useDropzone } from 'react-dropzone';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const containerName = 'imageupcontainer99';
 const sasToken = 'sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2027-08-01T00:37:27Z&st=2024-07-31T16:37:27Z&spr=https&sig=0XLu4HxQ2B9ViuV8T6%2Banh5SogTLmak81IqjMivOG6I%3D'; // Replace with your SAS token
@@ -103,16 +104,21 @@ const FileUpload = () => {
           </div>
         )}
 
-        {saveButtonVisible && (
-          <button className='upload-button' onClick={handleSave} disabled={saving}>
-            {saving ? 'Saving...' : 'Save'}
-          </button>
+{Auth.loggedIn() ? (
+          saveButtonVisible && (
+            <button className='upload-button' onClick={handleSave} disabled={saving}>
+              {saving ? 'Saving...' : 'Save'}
+            </button>
+          )
+        ) : (
+          <p className='black-text-2'>
+            You must <a href="/login">LOG IN</a> or <a href="/signup">SIGN UP</a> to save an image to your profile page.
+          </p>
         )}
 
-        {successMessage && <p className='success-message'>{successMessage}</p>}  
+        {successMessage && <p className='success-message'>{successMessage}</p>}
       </div>
     </div>
   );
 };
-
 export default FileUpload;
