@@ -13,34 +13,32 @@ const blobServiceClient = new BlobServiceClient(
 
 const FileUpload = () => {
   const [uploading, setUploading] = useState(false);
-  const [uploadedUrls, setUploadedUrls] = useState([]); // Array to hold all uploaded image URLs
+  const [uploadedUrl, setUploadedUrl] = useState(''); // Track only the most recent uploaded image URL
   const [updateUser, { loading: saving, error }] = useMutation(UPDATE_USER);
+  const [successMessage, setSuccessMessage] = useState(''); // State to hold success message
+  const [saveButtonVisible, setSaveButtonVisible] = useState(false); // State to control Save button visibility
 
   // Function to handle file upload
   const handleUpload = async (file) => {
     setUploading(true);
-
     try {
       const containerClient = blobServiceClient.getContainerClient(containerName);
-
       // Check if the container exists (optional, for debugging)
       const containerExists = await containerClient.exists();
       if (!containerExists) {
         console.log('Container does not exist.');
         return;
       }
-
       const blobClient = containerClient.getBlockBlobClient(file.name);
       const uploadBlobResponse = await blobClient.uploadBrowserData(file);
       const blobUrl = blobClient.url;
-
       // Log the uploaded URL
       console.log('Blob URL:', blobUrl);
-
-      // Update the list of uploaded URLs
-      setUploadedUrls((prevUrls) => [...prevUrls, blobUrl]);
-
+      setSuccessMessage(''); // Clear any previous success message
+      // Update the most recent uploaded URL
+      setUploadedUrl(blobUrl);
       console.log('Upload complete:', uploadBlobResponse);
+      setSaveButtonVisible(true); // Ensure Save button is visible after a successful upload
     } catch (error) {
       console.error('Upload error:', error);
     } finally {
@@ -55,15 +53,17 @@ const FileUpload = () => {
     handleUpload(acceptedFiles[0]); // Handle the first file dropped
   };
 
-  // Function to save uploaded URLs to the user's profile
+  // Function to save uploaded URL to the user's profile
   const handleSave = async () => {
     try {
-      console.log('Saving image URLs:', uploadedUrls); // Log the URLs being saved
+      console.log('Saving image URL:', uploadedUrl); // Log the URL being saved
       const { data } = await updateUser({
-        variables: { imageUrls: uploadedUrls }
+        variables: { imageUrls: [uploadedUrl] } // Save only the most recent URL
       });
       if (data) {
         console.log('User images updated successfully:', data.updateUser);
+        setSuccessMessage('Image has been successfully saved to your Profile page!'); // Set the success message
+        setSaveButtonVisible(false); // Hide Save button after clicking
       }
     } catch (error) {
       console.error('Failed to save images:', error);
@@ -91,25 +91,25 @@ const FileUpload = () => {
         </button>
       </div>
       <div className="uploaded-images">
-        {uploadedUrls.length > 0 && (
+        {uploadedUrl && (
           <div>
-            <h3>Uploaded Images:</h3>
-            {uploadedUrls.map((url, index) => (
-              <div key={index}>
-                <p>File URL:</p>
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                  {url}
-                </a>
-                <p>Uploaded Image:</p>
-                <img src={url} alt={`Uploaded ${index}`} style={{ width: '200px', height: 'auto' }} />
-              </div>
-            ))}
-
-            <button className='save-button' onClick={handleSave} disabled={saving}>
-              {saving ? 'Saving...' : 'Save'}
-            </button>
+            <h3>Uploaded Image:</h3>
+            <p className='black-text'>File URL:</p>
+            <a className='upload-url' href={uploadedUrl} target="_blank" rel="noopener noreferrer">
+              {uploadedUrl}
+            </a>
+            <p>Uploaded Image:</p>
+            <img src={uploadedUrl} alt={`Uploaded`} style={{ width: '200px', height: 'auto' }} />
           </div>
         )}
+
+        {saveButtonVisible && (
+          <button className='upload-button' onClick={handleSave} disabled={saving}>
+            {saving ? 'Saving...' : 'Save'}
+          </button>
+        )}
+
+        {successMessage && <p className='success-message'>{successMessage}</p>}  
       </div>
     </div>
   );

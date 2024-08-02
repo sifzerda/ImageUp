@@ -35,8 +35,15 @@ const Profile = () => {
         <div>
           {user.imageUrls && user.imageUrls.length > 0 ? (
             user.imageUrls.map((url, index) => (
-              <div key={index}>
-                <img src={url} alt={`Uploaded ${index}`} style={{ width: '200px', height: 'auto' }} />
+              <div key={index} style={{ display: 'inline-block', margin: '10px' }}>
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={url}
+                    alt={`Uploaded ${index}`}
+                    style={{ width: '200px', height: 'auto', cursor: 'pointer' }}
+                    title={url} // Tooltip showing the URL
+                  />
+                </a>
                 <p>Image {index + 1}</p>
               </div>
             ))

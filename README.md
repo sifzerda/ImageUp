@@ -18,7 +18,7 @@
 
 ## (1) Description
 
-A small project to make an image uploading and hosting app. Image hosting through a free tier account (1 year trial) on Microsoft Azure.
+A small project to make an image uploading and hosting app. Image hosting through a free tier account (1 year trial) on Microsoft Azure. Hosed images can be saved to User array and retrieved with URL for reference on User's profile page.
 
 Images are sent to my storage container on Azure, and retrieved from the container and displayed on the page, with newly created URL
 
@@ -26,13 +26,14 @@ Lessons learned from building this project:
 
 - File uploading
 - File hosting
+- Saving images to User file
 - Learning to use new tech:
-  - Formik;
-  - Yup;
+  - ~~Formik;~~
+  - ~~Yup;~~
   - Multer;
-  - graphql-upload;
+  - ~~graphql-upload;~~
   - react-dropzone
-- Cloud Storage
+- Cloud Storage with MS Azure Blob Storage
 - Implement cloud hosting first, rather than uploading. Harder to get cloud into working uploading code, than uploading into working cloud hosting code. 
 
 ## (2) Badges
