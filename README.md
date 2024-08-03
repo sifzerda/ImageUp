@@ -118,13 +118,13 @@ Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploa
 - <strong>axios:</strong> promise-based JavaScript library and API to make asynchronous HTTP requests. 
 - <strong>react-dropzone:</strong> library for handling 'drag-and-drop' file uploads.
 - <strong>multer:</strong> middleware for handling file uploading.
-- <strong>cors:</strong>
-- <strong>formik:</strong> react library for form building and processing.
-- <strong>yup:</strong> schema builder for value parsing and validation.
+- <strong>cors:</strong> security package to manage cross-origin requests.
+- ~~<strong>formik:</strong> react library for form building and processing.~~ used originally but took out
+- ~~<strong>yup:</strong> schema builder for value parsing and validation.~~ used originally but took out
 - <strong>~~cloudinary:~~ </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work. 
-- <strong>~~Amazon:~~ </strong>media hosting on cloud.
-- <strong>~~Google:~~ </strong>media hosting on cloud.
-- <strong>azure/storage-blob: </strong> Client library providing object storage in cloud.
+- <strong>~~Amazon:~~ </strong>media hosting on cloud. Tried but took out.
+- <strong>~~Google:~~ </strong>media hosting on cloud. Tried but took out.
+- <strong>azure/storage-blob: </strong> Client library providing object/file storage in cloud.
 
 1. <u>'const handleUpload':</u> uploads image and also sends to MS Azure cloud container.
 2. <u>'const handleSave':</u> onclick handler which writes uploaded image to logged in user's imageUrls array.
@@ -136,6 +136,8 @@ N/A
 ## (7) Bugs: 
 
 - Could not get Firebase cloud service to host images, will try with new component
+- Some of the cloud services have fees attracting use over certain limit
+- There are two separate image modal components (ImageModal and ProfileModal) because ImageModal wouldn't display on the profile for some reason, so I had to make a new one. They each separate entries/selectors in CSS file.
 
 ## (8) To do: 
 
@@ -145,7 +147,8 @@ N/A
   - [ ] local storage;
   - ~~[ ] if user logged on~~
   - ~~[ ] restrict image uploading to registered users and when upload images, auto save to their user record - to retrieve when site returned to~~
-- [x] images get unique url so they can be viewed image alone on separate page (i.e. openeed as new tab and linked in url and shared)
+- [ ] ~~images get unique url so they can be viewed image alone on separate page (i.e. openeed as new tab and linked in url and shared)~~
+  - [x] image opens in a modal on uploaded page and profile page 
 - [x] make some graphql queries and mutations to store uploaded cloud images urls to be retrievable when users log in again
 
 ## (10) Support

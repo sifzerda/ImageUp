@@ -4,13 +4,12 @@ import { QUERY_ME } from '../utils/queries';
 import '../App.css';
 import '../minesweeper.css';
 import '../image.css';
-import ImageModal from '../components/ImageModal'; // Import the ImageModal component
+ import ProfileModal from '../components/ProfileModal';
 
 const Profile = () => {
   const { data: userData, loading: userLoading, error: userError } = useQuery(QUERY_ME);
   const [selectedImage, setSelectedImage] = useState(null); // State for selected image
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
-  console.log('Is modal open:', isModalOpen);
+ 
   
   // Log the loading state
   console.log('Loading user data:', userLoading);
@@ -31,18 +30,7 @@ const Profile = () => {
   // Log the user's image URLs
   console.log('User image URLs:', user.imageUrls);
 
-  // Function to open modal with selected image
-  const openModal = (url) => {
-    console.log('Opening modal with URL:', url); // Log the URL being passed
-    setSelectedImage(url);
-    setIsModalOpen(true);
-  };
-  
-  const closeModal = () => {
-    console.log('Closing modal'); // Log when the modal is closed
-    setSelectedImage(null);
-    setIsModalOpen(false);
-  };
+ 
 
   return (
     <div>
@@ -60,7 +48,8 @@ const Profile = () => {
                     alt={`Uploaded ${index}`}
                     style={{ width: '200px', height: 'auto', cursor: 'pointer' }}
                     title={url} // Tooltip showing the URL
-                    onClick={() => openModal(url)} // Open modal on image click
+                    onClick={() => setSelectedImage(url)} // Set selected image on click
+ 
                   />
                 {/*  </a> */}
                 <p>Image {index + 1}</p>
@@ -72,11 +61,11 @@ const Profile = () => {
         </div>
       )}
 
- {/* Render the ImageModal component if modal is open */}
- {isModalOpen && (
-        <ImageModal imageUrl={selectedImage} onClose={closeModal} />
-      )}
-
+      {/* Render the modal if an image is selected */}
+      <ProfileModal
+        imageUrl={selectedImage}
+        onClose={() => setSelectedImage(null)} // Clear selected image on close
+      />
     </div>
   );
 };
