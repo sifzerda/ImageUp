@@ -1,17 +1,12 @@
+// working image uploading and hosting, and modal without Formik and Yup
+
 import React, { useState, useCallback } from 'react';
 import { BlobServiceClient } from '@azure/storage-blob';
 import { useDropzone } from 'react-dropzone';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../utils/mutations';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
 import Auth from '../utils/auth';
 import ImageModal from './ImageModal'; // Import the ImageModal component
-
-// Define validation schema with Yup
-const validationSchema = Yup.object({
-  file: Yup.mixed().required('A file is required'),
-});
 
 const containerName = 'imageupcontainer99';
 const sasToken = 'sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2027-08-01T00:37:27Z&st=2024-07-31T16:37:27Z&spr=https&sig=0XLu4HxQ2B9ViuV8T6%2Banh5SogTLmak81IqjMivOG6I%3D'; // Replace with your SAS token
@@ -80,20 +75,8 @@ const FileUpload = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  return (
-    <Formik
-    initialValues={{ file: null }}
-    validationSchema={validationSchema}
-    onSubmit={(values, { setSubmitting }) => {
-      if (values.file) {
-        handleUpload(values.file);
-      }
-      setSubmitting(false);
-    }}
-  >
-    {({ setFieldValue, isSubmitting, errors, touched }) => (
-      <Form>
 
+  return (
     <div className="upload-container">
       <div className="upload-header">Image Upload</div>
 
@@ -142,9 +125,6 @@ const FileUpload = () => {
       {/* Render the ImageModal component if modal is open */}
       <ImageModal imageUrl={uploadedUrl} onClose={closeModal} isOpen={isModalOpen} />
     </div>
-    </Form>
-    )}
-    </Formik>
   );
 };
 

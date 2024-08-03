@@ -119,8 +119,9 @@ Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploa
 - <strong>react-dropzone:</strong> library for handling 'drag-and-drop' file uploads.
 - <strong>multer:</strong> middleware for handling file uploading.
 - <strong>cors:</strong> security package to manage cross-origin requests.
-- ~~<strong>formik:</strong> react library for form building and processing.~~ used originally but took out
-- ~~<strong>yup:</strong> schema builder for value parsing and validation.~~ used originally but took out
+- <strong>formik:</strong> react library for form building and processing.
+- <strong>yup:</strong> schema builder for value parsing and validation. 
+  - There's a copy of ImageUp (4) without formik and yup.
 - <strong>~~cloudinary:~~ </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work. 
 - <strong>~~Amazon:~~ </strong>media hosting on cloud. Tried but took out.
 - <strong>~~Google:~~ </strong>media hosting on cloud. Tried but took out.
