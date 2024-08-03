@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { BlobServiceClient } from '@azure/storage-blob';
 import { useDropzone } from 'react-dropzone';
 import { useMutation } from '@apollo/client';
@@ -17,16 +17,15 @@ const FileUpload = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadedUrl, setUploadedUrl] = useState(''); // Track only the most recent uploaded image URL
   const [updateUser, { loading: saving, error }] = useMutation(UPDATE_USER);
-  const [successMessage, setSuccessMessage] = useState(''); // State to hold success message
-  const [saveButtonVisible, setSaveButtonVisible] = useState(false); // State to control Save button visibility
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [successMessage, setSuccessMessage] = useState('');
+  const [saveButtonVisible, setSaveButtonVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Function to handle file upload
   const handleUpload = async (file) => {
     setUploading(true);
     try {
       const containerClient = blobServiceClient.getContainerClient(containerName);
-      // Check if the container exists (optional, for debugging)
       const containerExists = await containerClient.exists();
       if (!containerExists) {
         console.log('Container does not exist.');
@@ -35,13 +34,10 @@ const FileUpload = () => {
       const blobClient = containerClient.getBlockBlobClient(file.name);
       const uploadBlobResponse = await blobClient.uploadBrowserData(file);
       const blobUrl = blobClient.url;
-      // Log the uploaded URL
-      console.log('Blob URL:', blobUrl);
-      setSuccessMessage(''); // Clear any previous success message
-      // Update the most recent uploaded URL
+      setSuccessMessage('');
       setUploadedUrl(blobUrl);
+      setSaveButtonVisible(true);
       console.log('Upload complete:', uploadBlobResponse);
-      setSaveButtonVisible(true); // Ensure Save button is visible after a successful upload
     } catch (error) {
       console.error('Upload error:', error);
     } finally {
@@ -50,30 +46,25 @@ const FileUpload = () => {
   };
 
   // Function to handle file drop
-  const handleDrop = (acceptedFiles) => {
+  const handleDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length === 0) return;
-    console.log('Files dropped:', acceptedFiles);
-    handleUpload(acceptedFiles[0]); // Handle the first file dropped
-  };
+    handleUpload(acceptedFiles[0]);
+  }, [handleUpload]);
 
-  // Function to save uploaded URL to the user's profile -- conditional on user being logged in
-  const handleSave = async () => {
+  const handleSave = useCallback(async () => {
     try {
-      console.log('Saving image URL:', uploadedUrl); // Log the URL being saved
       const { data } = await updateUser({
-        variables: { imageUrls: [uploadedUrl] } // Save only the most recent URL
+        variables: { imageUrls: [uploadedUrl] }
       });
       if (data) {
-        console.log('User images updated successfully:', data.updateUser);
-        setSuccessMessage('Image has been successfully saved to your Profile page!'); // Set the success message
-        setSaveButtonVisible(false); // Hide Save button after clicking
+        setSuccessMessage('Image has been successfully saved to your Profile page!');
+        setSaveButtonVisible(false);
       }
     } catch (error) {
       console.error('Failed to save images:', error);
     }
-  };
+  }, [uploadedUrl, updateUser]);
 
-  // Use dropzone to handle file drop
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
     accept: 'image/*',
@@ -81,6 +72,7 @@ const FileUpload = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
 
   return (
     <div className="upload-container">
