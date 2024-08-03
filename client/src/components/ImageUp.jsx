@@ -11,7 +11,6 @@ const accountName = 'imageupstorageaccount99';
 const blobServiceClient = new BlobServiceClient(
   `https://${accountName}.blob.core.windows.net?${sasToken}`
 );
-
 const FileUpload = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadedUrl, setUploadedUrl] = useState(''); // Track only the most recent uploaded image URL
@@ -54,7 +53,7 @@ const FileUpload = () => {
     handleUpload(acceptedFiles[0]); // Handle the first file dropped
   };
 
-  // Function to save uploaded URL to the user's profile
+  // Function to save uploaded URL to the user's profile -- conditional on user being logged in
   const handleSave = async () => {
     try {
       console.log('Saving image URL:', uploadedUrl); // Log the URL being saved
