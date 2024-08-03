@@ -12,6 +12,21 @@
   margin-bottom: 20px;
 }
 
+.upload-container {
+  padding: 10px; /* Add some padding for spacing */
+  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+  border-radius: 4px; /* Optional: Rounded corners */
+  background-color: #f9f9f9; /* Optional: Background color */
+}
+
+.upload-container h3 {
+  margin: 0 0 10px 0; /* Margin adjustments */
+}
+
+.upload-container p {
+  margin: 0 0 5px 0; /* Margin adjustments */
+}
+
 /* Drag-and-drop area styling */
 .upload-box {
   border: 2px dashed #ccc;
@@ -58,7 +73,8 @@
 }
 
 .uploaded-images {
-  width: 100%;
+  flex: 1;
+  padding: 20px;
 }
 
 .uploaded-images h3 {
@@ -82,7 +98,7 @@
 
 /* File input button styling */
 .input-submit-button {
-  display: block;
+  width: 100%; /* Ensures the button fits the container's width */
   margin: 20px 0;
   border: 2px 1px solid #000000!important;
   padding: 10px;
@@ -111,15 +127,24 @@
   margin: 10px 0;
 }
 
-a.upload-url {
-  color: #0026ff;
-  text-decoration: none;
+/*                  optional: style url displayed for uploaded images but this causes formatting/page responsivity issue 
+.upload-url {
+  display: block; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+  hyphens: auto; 
+  white-space: normal; 
+  text-overflow: ellipsis; 
+  max-width: 100%; 
+  color: #007bff; 
+  text-decoration: none; 
 }
 
 a.upload-url:hover {
   color: #ff0037!important;
-  text-decoration: none;
+  text-decoration: underline;
 }
+*/
 
 p.success-message {
   color: var(--cyan);

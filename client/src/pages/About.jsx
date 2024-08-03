@@ -5,14 +5,11 @@ import '../image.css';
 
 export default function About () {
   return (
-    <div>
+ 
 
 <div className='grid-wrapper'>
-<div className='white-box'>
+
       <ImageUp />
-</div>
-</div>
-{/* -------------- */}
 
     </div>
   );

@@ -7,6 +7,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Auth from '../utils/auth';
 import ImageModal from './ImageModal';
+import spinner from '../assets/spinner.gif';
 
 // Define validation schema with Yup
 const validationSchema = Yup.object({
@@ -81,78 +82,80 @@ const FileUpload = () => {
 
   return (
     <Formik
-      initialValues={{ file: null }}
-      validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        if (values.file) {
-          handleUpload(values.file);
-        }
-        setSubmitting(false);
-      }}
-    >
-      {({ setFieldValue, isSubmitting, errors, touched }) => (
-        <Form className="upload-container">
-          <div className="upload-header">Image Upload</div>
-          <div className='upload-box' {...getRootProps()}>
-            <input {...getInputProps()} />
-            <p className='black-text'>Drag and drop an image here, or click to select one</p>
-          </div>
-          <div>
-            <Field name="file">
-              {({ field }) => (
-                <input
-                  type="file"
-                  {...field}
-                  onChange={(e) => setFieldValue('file', e.currentTarget.files[0])}
-                />
-              )}
-            </Field>
-            <ErrorMessage name="file" component="div" className="error-message" />
-            <button
-              className='upload-button'
-              type="submit"
-              disabled={uploading || isSubmitting}
-            >
-              {uploading ? 'Uploading...' : 'Upload'}
-            </button>
-          </div>
-          <div className="uploaded-images">
-            {uploadedUrl && (
-              <div>
-                <h3>Uploaded Image:</h3>
-                <p className='black-text'>File URL:</p>
-                <a className='upload-url' href={uploadedUrl} target="_blank" rel="noopener noreferrer">
-                  {uploadedUrl}
-                </a>
-                <p>Uploaded Image:</p>
-                <img
-                  src={uploadedUrl}
-                  alt={`Uploaded`}
-                  style={{ width: '200px', height: 'auto', cursor: 'pointer' }}
-                  onClick={openModal} // Open modal on click
-                />
+    initialValues={{ file: null }}
+    validationSchema={validationSchema}
+    onSubmit={(values, { setSubmitting }) => {
+      if (values.file) {
+        handleUpload(values.file);
+      }
+      setSubmitting(false);
+    }}
+  >
+    {({ setFieldValue, isSubmitting, errors, touched }) => (
+      <Form>
+
+    <div className="upload-container">
+      <div className="upload-header">Image Upload</div>
+      <div className='upload-box' {...getRootProps()}>
+        <input {...getInputProps()} />
+        <p className='black-text'>Drag and drop an image here, or click to select one</p>
+      </div>
+
+      <div>
+        <input className='input-submit-button' type="file" onChange={(e) => handleUpload(e.target.files[0])} />
+        <button className='upload-button' onClick={() => handleUpload(file)} disabled={uploading}>
+          {uploading ? 'Uploading...' : 'Upload'}
+        </button>
+      </div>
+
+      {uploading && (
+              <div className="spinner-container">
+                <img src={spinner} alt="Loading..." className="spinner" />
               </div>
             )}
-            {Auth.loggedIn() ? (
-              saveButtonVisible && (
-                <button
-                  className='upload-button'
-                  onClick={handleSave}
-                  disabled={saving}
-                >
-                  {saving ? 'Saving...' : 'Save'}
-                </button>
-              )
-            ) : (
-              <p className='black-text-2'>
-                You must <a href="/login">LOG IN</a> or <a href="/signup">SIGN UP</a> to save an image to your profile page.
-              </p>
-            )}
-            {successMessage && <p className='success-message'>{successMessage}</p>}
+
+      <div className="uploaded-images">
+        {uploadedUrl && (
+          <div>
+            <h3>Uploaded Image:</h3>
+
+{/*      optional: display hosted image url, but this causes flex issues
+
+            <p className='black-text'>File URL:</p>
+            <a className='upload-url' href={uploadedUrl} target="_blank" rel="noopener noreferrer">
+              {uploadedUrl}
+            </a>
+*/}
+            <p>Uploaded Image:</p>
+            <img
+              src={uploadedUrl}
+              alt={`Uploaded`}
+              style={{ width: '200px', height: 'auto', cursor: 'pointer' }}
+              title= {uploadedUrl}
+              onClick={openModal} // Open modal on click
+            />
           </div>
-          <ImageModal imageUrl={uploadedUrl} onClose={closeModal} isOpen={isModalOpen} />
-        </Form>
-      )}
+        )}
+
+        {Auth.loggedIn() ? (
+          saveButtonVisible && (
+            <button className='upload-button' onClick={handleSave} disabled={saving}>
+              {saving ? 'Saving...' : 'Save'}
+            </button>
+          )
+        ) : (
+          <p className='black-text-2'>
+            You must <a href="/login">LOG IN</a> or <a href="/signup">SIGN UP</a> to save an image to your profile page.
+          </p>
+        )}
+
+        {successMessage && <p className='success-message'>{successMessage}</p>}
+      </div>
+      {/* Render the ImageModal component if modal is open */}
+      <ImageModal imageUrl={uploadedUrl} onClose={closeModal} isOpen={isModalOpen} />
+    </div>
+    </Form>
+    )}
     </Formik>
   );
 };

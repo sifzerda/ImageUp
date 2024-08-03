@@ -16,26 +16,6 @@
     justify-content: center;
     align-items: center;
   }
-  
-  .white-box {
-    display: grid;
-    place-items: center; 
-    background-color: white;
-    padding: 20px;
-    padding-left: 40px;
-    border-radius: 10px;
-    border: 8px solid var(--midnight);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: fit-content; 
-    height: fit-content;
-  }
-  
-  .grid-container {
-    margin-top: 20px; 
-    display: grid;
-    min-width: 900px;
-    place-items: center; 
-  }
 
 .submit-button-m {
   display: block;
