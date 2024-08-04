@@ -28,8 +28,8 @@ Lessons learned from building this project:
 - File hosting
 - Saving images to User file
 - Learning to use new tech:
-  - ~~Formik;~~
-  - ~~Yup;~~
+  - Formik;
+  - Yup;
   - Multer;
   - ~~graphql-upload;~~
   - react-dropzone
