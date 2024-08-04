@@ -74,38 +74,14 @@ npm run start
 
 Image hosting through Microsoft Azure Blob Storage.
 
-process.env not recognized in vite react unless you modify vite.config file:
+I added "type": "module" to the root package-json because I was getting an ES5 error:
 
 ```bash
-import { defineConfig, loadEnv } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
-  return {
-    define: {
-      'process.env.SOME_KEY': JSON.stringify(env.SOME_KEY)
-    },
-    plugins: [react()],
-    server: {
-      port: 3000,
-      open: true,
-      proxy: {
-        '/graphql': {
-          target: 'http://localhost:3001',
-          secure: false,
-          changeOrigin: true
-        }
-      }
-    }, 
-    test: {
-      environment: 'happy-dom',
-      globals: true
-    }
-
-  }
-})
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "server/server.js",
 ```
 
 ## (5) Usage
