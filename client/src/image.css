@@ -298,7 +298,6 @@ p.black-text-2 {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: solid 8px var(--midnight);
-  overflow: auto; /* Add scrollbar if content overflows */
 }
 
 .gallery-title {

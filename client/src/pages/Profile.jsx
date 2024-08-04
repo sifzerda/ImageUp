@@ -20,30 +20,27 @@ const Profile = () => {
   const user = userData.me;
 
   return (
-    <div>
+    <div className="gallery-container">
       <h1>Your Uploaded Images</h1>
       {user.imageUrls && user.imageUrls.length === 0 ? (
-        <p>You have not uploaded any images yet.</p>
+        <p className="no-images-message">You have not uploaded any images yet.</p>
       ) : (
-        <div>
+        <div className="gallery-grid">
           {user.imageUrls && user.imageUrls.length > 0 ? (
             user.imageUrls.map((url, index) => (
-              <div key={index} style={{ display: 'inline-block', margin: '10px' }}>
-            {/*     <a href={url} target="_blank" rel="noopener noreferrer">  */}
-                  <img
-                    src={url}
-                    alt={`Uploaded ${index}`}
-                    style={{ width: '200px', height: 'auto', cursor: 'pointer' }}
-                    title={url} // Tooltip showing the URL
-                    onClick={() => setSelectedImage(url)} // Set selected image on click
- 
-                  />
-                {/*  </a> */}
-                <p>Image {index + 1}</p>
+              <div key={index} className="gallery-item">
+                <img
+                  src={url}
+                  alt={`Uploaded ${index}`}
+                  className="gallery-image"
+                  title={url} // Tooltip showing the URL
+                  onClick={() => setSelectedImage(url)} // Set selected image on click
+                />
+                <p className="image-description">Image {index + 1}</p>
               </div>
             ))
           ) : (
-            <p>No images found.</p>
+            <p className="no-images-message">No images found.</p>
           )}
         </div>
       )}
