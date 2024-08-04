@@ -25,12 +25,7 @@ const validationSchema = Yup.object({
 
 // Microsoft Azure Blob Storage connection string
 
-const containerName = import.meta.env.VITE_CONTAINER_NAME;
-const sasToken = import.meta.env.VITE_SAS_TOKEN; 
-const accountName = import.meta.env.VITE_ACCOUNT_NAME;
-const blobServiceClient = new BlobServiceClient(
-  `https://${accountName}.blob.core.windows.net?${sasToken}`
-);
+// add MS Azure container connection string info here //
 
 const FileUpload = () => {
   const [uploading, setUploading] = useState(false);

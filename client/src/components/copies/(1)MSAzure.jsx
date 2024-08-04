@@ -3,12 +3,7 @@
 import React, { useState } from 'react';
 import { BlobServiceClient } from '@azure/storage-blob';
 
-const containerName = 'imageupcontainer99';
-const sasToken = 'sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2027-08-01T00:37:27Z&st=2024-07-31T16:37:27Z&spr=https&sig=0XLu4HxQ2B9ViuV8T6%2Banh5SogTLmak81IqjMivOG6I%3D'; // Replace with your SAS token
-const accountName = 'imageupstorageaccount99'; 
-const blobServiceClient = new BlobServiceClient(
-  `https://${accountName}.blob.core.windows.net?${sasToken}`
-);
+// add MS Azure container connection string info here //
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
