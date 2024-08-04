@@ -111,9 +111,10 @@ body,
 
 a.back-link {
   text-decoration: none;
-  color: white;
+  color: black;
   margin-bottom: 10px;
   display: inline-block;
+  font-size: 1.2rem;
 }
 
 /* signup ---------------------------------------------------------*/
@@ -402,7 +403,6 @@ h5 {
 /* ================== Contact Form ======================== */
 
 form {
-  display: flex;
   margin: 0 auto;
 }
 

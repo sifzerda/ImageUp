@@ -109,7 +109,7 @@ const FileUpload = () => {
       </div>
 
       {uploading && (
-              <div className="spinner-container">
+              <div className="center-content">
                 <img src={spinner} alt="Loading..." className="spinner" />
               </div>
             )}
