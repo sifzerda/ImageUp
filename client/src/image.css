@@ -81,6 +81,9 @@
 .uploaded-images {
   flex: 1;
   padding: 20px;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;  
 }
 
 .uploaded-images h3 {
@@ -100,6 +103,10 @@
   max-width: 100%;
   height: auto;
   border-radius: 4px;
+}
+
+img.black-border {
+  border: 2px solid black;
 }
 
 /* File input button styling */
@@ -174,6 +181,21 @@ p.black-text-2 {
   justify-content: center;
 }
 
+.fireworks-container {
+  display: flex; /* group contents and horizontal alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  gap: 10px; /* space between the elements */
+  border: none!important;
+}
+
+.fireworks {
+  max-width: 50px!important; /* Set a maximum width for the images */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+/* uploaded images (ImageUp.jsx) display modal------------------------------------------ */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -238,7 +260,7 @@ p.black-text-2 {
   border: 5px solid  #007bff;
 }
 
-/* profile display modal */
+/* profile display modal------------------------------------------ */
 .modal-overl {
   position: fixed;
   top: 0;

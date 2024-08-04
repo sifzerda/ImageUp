@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import Auth from '../utils/auth';
 import ImageModal from './ImageModal';
 import spinner from '../assets/spinner.gif';
+import fireworks from '../assets/fireworks.gif';
 
 // Define validation schema with Yup
 const validationSchema = Yup.object({
@@ -96,6 +97,7 @@ const FileUpload = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  // Render --------------------------------------------------------------//
   return (
     <Formik
     initialValues={{ file: null }}
@@ -132,8 +134,16 @@ const FileUpload = () => {
 
       <div className="uploaded-images">
         {uploadedUrl && (
-          <div>
-            <h3>Uploaded Image:</h3>
+          <div className="center-content">
+
+<div className="fireworks-container">
+                <img src={fireworks} alt="Done!" className="fireworks" />
+                <p className='black-text'>Image uploaded successfully!</p>
+                <img src={fireworks} alt="Done!" className="fireworks" />
+              </div>
+
+           
+            <h5>Uploaded Image:</h5>
 
 {/*      optional: display hosted image url, but this causes flex issues
 
@@ -142,8 +152,7 @@ const FileUpload = () => {
               {uploadedUrl}
             </a>
 */}
-            <p>Uploaded Image:</p>
-            <img
+            <img className='black-border'
               src={uploadedUrl}
               alt={`Uploaded`}
               style={{ width: '200px', height: 'auto', cursor: 'pointer' }}
