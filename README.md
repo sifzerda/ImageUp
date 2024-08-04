@@ -85,7 +85,7 @@ Image hosting through Microsoft Azure Blob Storage.
 I added "type": "module" to the root package-json because I was getting an ES5 error:
 
 ```bash
-  "name": "minesweeper",
+  "name": "main",
   "version": "1.0.0",
   "type": "module",
   "description": "",
