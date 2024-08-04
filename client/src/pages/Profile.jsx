@@ -4,33 +4,20 @@ import { QUERY_ME } from '../utils/queries';
 import '../App.css';
 import '../minesweeper.css';
 import '../image.css';
- import ProfileModal from '../components/ProfileModal';
+import ProfileModal from '../components/ProfileModal';
 
 const Profile = () => {
   const { data: userData, loading: userLoading, error: userError } = useQuery(QUERY_ME);
   const [selectedImage, setSelectedImage] = useState(null); // State for selected image
- 
-  
-  // Log the loading state
-  console.log('Loading user data:', userLoading);
 
   // Log the error, if any
   if (userError) {
     console.error('Error fetching user:', userError.message);
   }
-
-  // Log the fetched data
-  console.log('Fetched user data:', userData);
-
   if (userLoading) return <p>Loading user...</p>;
   if (userError) return <p>Error fetching user: {userError.message}</p>;
 
   const user = userData.me;
-
-  // Log the user's image URLs
-  console.log('User image URLs:', user.imageUrls);
-
- 
 
   return (
     <div>

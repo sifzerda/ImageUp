@@ -51,7 +51,7 @@ const FileUpload = () => {
     }
   };
 
-  // Function to handle file drop
+  // Function to handle file drop --------------------------------------//
   const handleDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length > 0) {
       handleUpload(acceptedFiles[0]);
@@ -71,6 +71,18 @@ const FileUpload = () => {
       console.error('Failed to save images:', error);
     }
   }, [uploadedUrl, updateUser]);
+
+    // Function to save image URL to local storage ------------------------//
+    const handleSaveToLocal = () => {
+      try {
+        const savedImages = JSON.parse(localStorage.getItem('savedImages')) || [];
+        savedImages.push(uploadedUrl);
+        localStorage.setItem('savedImages', JSON.stringify(savedImages));
+        setSuccessMessage('Image URL saved to local storage!');
+      } catch (error) {
+        console.error('Failed to save image URL to local storage:', error);
+      }
+    };
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
@@ -144,10 +156,18 @@ const FileUpload = () => {
             </button>
           )
         ) : (
-          <p className='black-text-2'>
-            You must <a href="/login">LOG IN</a> or <a href="/signup">SIGN UP</a> to save an image to your profile page.
+          <>
+          <p className="black-text-2">
+            You must <a href="/login">LOG IN</a> or <a href="/signup">SIGN UP</a> to save an image to your
+            profile page.
           </p>
-        )}
+          {saveButtonVisible && (
+            <button className="upload-button" onClick={handleSaveToLocal}>
+              Save Image to Local Storage
+            </button>
+          )}
+        </>
+      )}
 
         {successMessage && <p className='success-message'>{successMessage}</p>}
       </div>
