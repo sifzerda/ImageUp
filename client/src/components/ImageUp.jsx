@@ -101,7 +101,7 @@ const FileUpload = () => {
         <p className='black-text'>Drag and drop an image here, or click to select one</p>
       </div>
 
-      <div>
+      <div className='center-content'>
         <input className='input-submit-button' type="file" onChange={(e) => handleUpload(e.target.files[0])} />
         <button className='upload-button' onClick={() => handleUpload(file)} disabled={uploading}>
           {uploading ? 'Uploading...' : 'Upload'}

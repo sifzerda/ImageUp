@@ -12,6 +12,12 @@
   margin-bottom: 20px;
 }
 
+.center-content {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;  
+}
+
 .upload-container {
   padding: 10px; /* Add some padding for spacing */
   border: 1px solid #ccc; /* Optional: Add a border for better visibility */

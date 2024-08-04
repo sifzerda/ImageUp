@@ -151,6 +151,7 @@ N/A
 - [ ] ~~images get unique url so they can be viewed image alone on separate page (i.e. openeed as new tab and linked in url and shared)~~
   - [x] image opens in a modal on uploaded page and profile page 
 - [x] make some graphql queries and mutations to store uploaded cloud images urls to be retrievable when users log in again
+- [ ] fix up .env related issue
 
 ## (10) Support
 
