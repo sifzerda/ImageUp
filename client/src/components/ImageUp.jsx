@@ -152,7 +152,7 @@ const FileUpload = () => {
         {Auth.loggedIn() ? (
           saveButtonVisible && (
             <button className='upload-button' onClick={handleSave} disabled={saving}>
-              {saving ? 'Saving...' : 'Save'}
+              {saving ? 'Saving...' : 'Save Image'}
             </button>
           )
         ) : (

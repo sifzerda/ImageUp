@@ -123,7 +123,7 @@ N/A
 - [x] create image uploading
 - [x] upload multiple images
 - [x] store uploaded images
-  - [ ] local storage;
+  - [x] local storage -- in 'saved' nav tab
   - ~~[ ] if user logged on~~
   - ~~[ ] restrict image uploading to registered users and when upload images, auto save to their user record - to retrieve when site returned to~~
 - [ ] ~~images get unique url so they can be viewed image alone on separate page (i.e. openeed as new tab and linked in url and shared)~~

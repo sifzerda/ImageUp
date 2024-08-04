@@ -14,6 +14,7 @@ const Saved = () => {
   return (
     <div className="gallery-container">
       <h2 className="gallery-title">My Saved Images</h2>
+      <p className='black-text'>Note: Saved images will be lost if you delete your browser data. If you don't want to lose your images, you should make an account and save uploaded images to your profile page.</p>
       <div className="gallery-grid">
         {images.length > 0 ? (
           images.map((imageUrl, index) => (
@@ -28,7 +29,7 @@ const Saved = () => {
             </div>
           ))
         ) : (
-          <p className="no-images-message">No images saved in local storage.</p>
+          <p className="black-text">No images saved in local storage.</p>
         )}
       </div>
 
