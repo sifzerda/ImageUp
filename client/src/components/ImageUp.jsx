@@ -14,9 +14,9 @@ const validationSchema = Yup.object({
   file: Yup.mixed().required('A file is required'),
 });
 
-const containerName = 'imageupcontainer99';
-const sasToken = 'sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2027-08-01T00:37:27Z&st=2024-07-31T16:37:27Z&spr=https&sig=0XLu4HxQ2B9ViuV8T6%2Banh5SogTLmak81IqjMivOG6I%3D'; // Replace with your SAS token
-const accountName = 'imageupstorageaccount99';
+const containerName = import.meta.env.VITE_CONTAINER_NAME;
+const sasToken = import.meta.env.VITE_SAS_TOKEN; 
+const accountName = import.meta.env.VITE_ACCOUNT_NAME;
 const blobServiceClient = new BlobServiceClient(
   `https://${accountName}.blob.core.windows.net?${sasToken}`
 );
