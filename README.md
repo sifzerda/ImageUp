@@ -2,19 +2,23 @@
 
 ## Table of Contents
 
-1. Description
-2. Badges
-3. Visuals
-4. Installation
-5. Usage
-6. Dev Stuff: Building
-7. Bugs 
-8. To do
-9.  Support
-10. Contributing 
-11. Authors and acknowledgment
-12. License
-13. Project status
+- [IMAGE UP 🖼️🢁](#image-up-️)
+  - [Table of Contents](#table-of-contents)
+  - [(1) Description](#1-description)
+  - [(2) Badges](#2-badges)
+  - [(3) Visuals](#3-visuals)
+  - [(4) Installation](#4-installation)
+  - [(5) Usage](#5-usage)
+  - [(6) Dev Stuff: Building:](#6-dev-stuff-building)
+  - [(7) Alternate Config:](#7-alternate-config)
+  - [(8) Alternative Tech Options:](#8-alternative-tech-options)
+  - [(9) Bugs:](#9-bugs)
+  - [(10) To do:](#10-to-do)
+  - [(11) Support](#11-support)
+  - [(12) Contributing](#12-contributing)
+  - [(13) Authors and acknowledgment](#13-authors-and-acknowledgment)
+  - [(14) License](#14-license)
+  - [(15) Project status](#15-project-status)
 
 ## (1) Description
 
@@ -25,15 +29,15 @@ Images are sent to my storage container on Azure, and retrieved from the contain
 Lessons learned from building this project:
 
 - File uploading
-- File hosting
-- Saving images to User file
+- File hosting platform
+- Saving and retrieving images to User file
 - Learning to use new tech:
   - Formik;
   - Yup;
   - Multer;
   - ~~graphql-upload;~~
   - react-dropzone
-- Cloud Storage with MS Azure Blob Storage
+- Cloud Storage platform with MS Azure Blob Storage
 - Implement cloud hosting first, rather than uploading. Harder to get cloud into working uploading code, than uploading into working cloud hosting code. 
 
 ## (2) Badges
@@ -48,6 +52,7 @@ Lessons learned from building this project:
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) 
 ![Formik](https://img.shields.io/badge/Formik-2563EB.svg?style=for-the-badge&logo=Formik&logoColor=white)
+![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -61,7 +66,10 @@ Lessons learned from building this project:
 
 [Visit App deployed to Heroku](https://snake-10-afd58bdf61b8.herokuapp.com/)
 
-![snakeShot1](https://github.com/user-attachments/assets/f0c48cd9-b96a-4cf2-91d9-5d531c1137a3)
+![imagePhoto1](https://github.com/user-attachments/assets/21f9eac7-99e2-47fc-98e7-3848ec3cfacf)
+![imagePhoto2](https://github.com/user-attachments/assets/32dda8c8-7f3f-460d-b7d0-a259bc7bf568)
+![imagePhoto3](https://github.com/user-attachments/assets/93523329-e7fe-44b0-a46c-51cfdac5fe48)
+![imagePhoto4](https://github.com/user-attachments/assets/350162cf-9336-4616-9ff6-0d90025e056f)
 
 ## (4) Installation
 
@@ -86,13 +94,14 @@ I added "type": "module" to the root package-json because I was getting an ES5 e
 
 ## (5) Usage
 
-Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploaded images can be saved in user's model and can be retrieved on their profile page. This is recommended otherwise user may lose access to image.
-
-Otherwise is user is not logged in they can save images to local storage, and retrieve them on the 'TEMP' tab.
+•	Uploaded images are hosted on MS Azure. 
+•	Image URLs can be saved in local storage and retrieved in the 'Saved' tab.
+•	User can make an account and save image URLs to the user's imageURL model array. These are retrieved in the 'Profile' tab.
 
 ## (6) Dev Stuff: Building:
 
-### Tech used:
+ Tech used:
+ 
 - <strong>axios:</strong> promise-based JavaScript library and API to make asynchronous HTTP requests. 
 - <strong>react-dropzone:</strong> library for handling 'drag-and-drop' file uploads.
 - <strong>multer:</strong> middleware for handling file uploading.
@@ -100,13 +109,16 @@ Otherwise is user is not logged in they can save images to local storage, and re
 - <strong>formik:</strong> react library for form building and processing.
 - <strong>yup:</strong> schema builder for value parsing and validation. 
   - There's a copy of ImageUp (4) without formik and yup.
-- <strong>~~cloudinary:~~ </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work. 
-- <strong>~~Amazon:~~ </strong>media hosting on cloud. Tried but took out.
-- <strong>~~Google:~~ </strong>media hosting on cloud. Tried but took out.
+- <strong>~~cloudinary: </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work.~~
+- <strong>~~Amazon: </strong>media hosting on cloud. Tried but took out.~~
+- <strong>~~Google: </strong>media hosting on cloud. Tried but took out.~~
 - <strong>azure/storage-blob: </strong> Client library providing object/file storage in cloud.
 
 1. <u>'const handleUpload':</u> uploads image and also sends to MS Azure cloud container.
 2. <u>'const handleSave':</u> onclick handler which writes uploaded image to logged in user's imageUrls array.
+3. <u>'const handleDrop':</u> manages dropping an image into the drop zone.
+4. <u>'const handleSaveToLocal':</u> writes the uploaded image to user's local storage.
+5. <u>'const openModal' and 'const closeModal':</u> fxs for modal opening and closing.
 
 ## (7) Alternate Config:
 
@@ -153,6 +165,8 @@ Custom Hosting:
   - [x] image opens in a modal on uploaded page and profile page 
 - [x] make some graphql queries and mutations to store uploaded cloud images urls to be retrievable when users log in again
 - [x] fix up .env related issue
+- [ ] Delete saved images from Profile
+- [ ] Delete saved images from Saved
 
 ## (11) Support
 

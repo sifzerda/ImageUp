@@ -14,6 +14,8 @@ const validationSchema = Yup.object({
   file: Yup.mixed().required('A file is required'),
 });
 
+// Microsoft Azure Blob Storage connection string
+
 const containerName = import.meta.env.VITE_CONTAINER_NAME;
 const sasToken = import.meta.env.VITE_SAS_TOKEN; 
 const accountName = import.meta.env.VITE_ACCOUNT_NAME;
@@ -29,7 +31,7 @@ const FileUpload = () => {
   const [saveButtonVisible, setSaveButtonVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to handle file upload
+  // Function to handle file upload ------------------------------------//
   const handleUpload = async (file) => {
     setUploading(true);
     try {
@@ -84,11 +86,13 @@ const FileUpload = () => {
       }
     };
 
+    // react-dropzone hook to handle file drop ----------------------------//
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
     accept: 'image/*',
   });
 
+  // Functions to open and close the modal -------------------------------//
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
