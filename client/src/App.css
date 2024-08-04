@@ -433,6 +433,34 @@ ol.nav.nav-tabs {
   list-style: decimal-leading-zero;
 }
 
+/* ------------------------- prev. minesweeper css selectors -------------------------*/
+
+.grid-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black-text {
+color: black;
+}
+
+.black-text a {
+color: #007bff; /* Blue color for links */
+text-decoration: none; /* Remove underline from links */
+margin: 0 5px; /* Adjust margins between links */
+transition: color 0.9s ease; 
+font-weight: bold;
+font-family: 'Share Tech Mono', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.black-text a:hover {
+color: #0056b3!important; /* Darker blue color on hover */ /* Underline links on hover */
+border: 2px dashed var(--blue);
+padding: 5px;
+font-weight: bold;
+}
+
 /* ========================= media queries ======================== */
 
 /* media query for contact flex-box icons*/

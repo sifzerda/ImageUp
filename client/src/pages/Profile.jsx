@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import '../App.css';
-import '../minesweeper.css';
 import '../image.css';
 import ProfileModal from '../components/ProfileModal';
 

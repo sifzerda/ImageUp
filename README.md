@@ -108,17 +108,40 @@ Otherwise is user is not logged in they can save images to local storage, and re
 1. <u>'const handleUpload':</u> uploads image and also sends to MS Azure cloud container.
 2. <u>'const handleSave':</u> onclick handler which writes uploaded image to logged in user's imageUrls array.
 
-### Alternate Config:
+## (7) Alternate Config:
 
 N/A
 
-## (7) Bugs: 
+## (8) Alternative Tech Options:
+
+Cloud Storage Services:
+
+•	Amazon S3: Provides scalable object storage. You can use AWS SDKs or libraries like aws-sdk to interact with S3. [issue: couldn't create user]
+•	Google Cloud Storage: Similar to S3, but part of Google Cloud Platform. Use @google-cloud/storage to interact with it. [had some issue implementing]
+•	Microsoft Azure Blob Storage: Offers scalable storage with integration through Azure SDKs.
+- firebase -- [free but wouldn't work]
+
+ Image Hosting Services:
+
+•	Cloudinary: Provides an image and video management service with APIs for uploading, storing, and manipulating images. It also offers free tiers and easy integration. 
+•	Imgur: A popular image hosting service with a straightforward API. Good for smaller projects or testing. (not free)
+•	Flickr: Offers image hosting with API access. It's more oriented towards photo-sharing but can be used for hosting as well.
+ 
+Custom Hosting:
+
+•	Your Own Server: You can host images on your own server or infrastructure. This gives you full control but requires more setup and maintenance.
+•	CDN Services: Using Content Delivery Networks like Cloudflare or Fastly can help cache and serve images more efficiently.
+•  Integrated Hosting with CMS:
+•	WordPress: If using WordPress as a CMS, you can use its media library to host images.
+•	Strapi: A headless CMS that can manage and serve media files. (not free, 14 day trial)
+
+## (9) Bugs: 
 
 - Could not get Firebase cloud service to host images, will try with new component
 - Some of the cloud services have fees attracting use over certain limit
 - There are two separate image modal components (ImageModal and ProfileModal) because ImageModal wouldn't display on the profile for some reason, so I had to make a new one. They each separate entries/selectors in CSS file.
 
-## (8) To do: 
+## (10) To do: 
 
 - [x] create image uploading
 - [x] upload multiple images
@@ -131,11 +154,11 @@ N/A
 - [x] make some graphql queries and mutations to store uploaded cloud images urls to be retrievable when users log in again
 - [x] fix up .env related issue
 
-## (10) Support
+## (11) Support
 
 For support, users can contact tydamon@hotmail.com.
 
-## (11) Contributing
+## (12) Contributing
 
 Any contributions you make are greatly appreciated.
 
@@ -146,17 +169,17 @@ If you have a suggestion that would make this better, please fork the repo and c
 4. Push to the Branch (git push origin feature/NewFeature)
 5. Open a Pull Request
 
-## (12) Authors and acknowledgment
+## (13) Authors and acknowledgment
 
 The author acknowledges and credits those who have contributed to this project, including:
 
 - ChatGPT
 
-## (13) License
+## (14) License
 
 Distributed under the MIT License. See LICENSE.txt for more information.
 
-## (14) Project status
+## (15) Project status
 
 This project is complete.
 

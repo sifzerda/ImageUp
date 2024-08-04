@@ -1,6 +1,5 @@
 import '../App.css';
 import  ImageUp from '../components/ImageUp';
-import '../minesweeper.css';
 import '../image.css';
 
 export default function About () {
