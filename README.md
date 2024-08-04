@@ -64,7 +64,7 @@ Lessons learned from building this project:
 
 ## (3) Visuals
 
-[Visit App deployed to Heroku](https://snake-10-afd58bdf61b8.herokuapp.com/)
+[Visit App deployed to Heroku](https://imageup-10-2401032e81d0.herokuapp.com/)
 
 ![imagePhoto1](https://github.com/user-attachments/assets/21f9eac7-99e2-47fc-98e7-3848ec3cfacf)
 ![imagePhoto2](https://github.com/user-attachments/assets/32dda8c8-7f3f-460d-b7d0-a259bc7bf568)
