@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App.jsx';
 import Error from './pages/Error.jsx';
 import About from './pages/About.jsx';
-import Profile from './pages/Profile.jsx';
+import Profile from './pages/Profile.jsx'; // logged in saved imgages
+import Saved from './pages/Saved.jsx';    // not logged in LS saved images
 
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path: '/Profile',
         element: <Profile />
+      },
+
+      {
+        path: '/Saved',
+        element: <Saved />
       },
 
     ],
