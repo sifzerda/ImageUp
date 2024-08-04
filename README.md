@@ -86,7 +86,9 @@ I added "type": "module" to the root package-json because I was getting an ES5 e
 
 ## (5) Usage
 
-Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploaded images can be saved in user's model and can be retrieved on their profile page. This is recommended otherwise user will lose access to image.
+Images are uploaded and hosted on MS Azure. If user is logged in, URLs for uploaded images can be saved in user's model and can be retrieved on their profile page. This is recommended otherwise user may lose access to image.
+
+Otherwise is user is not logged in they can save images to local storage, and retrieve them on the 'TEMP' tab.
 
 ## (6) Dev Stuff: Building:
 
