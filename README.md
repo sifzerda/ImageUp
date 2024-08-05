@@ -22,7 +22,7 @@
 
 ## (1) Description
 
-A small project to make an image uploading and hosting app. Image hosting through a free tier account (1 year trial) on Microsoft Azure. Hosed images can be saved to User array and retrieved with URL for reference on User's profile page.
+A small project to make an image uploading and hosting app. Image hosting through a free tier account (1 year trial) on Microsoft Azure. Hosted images can be saved to User array and retrieved with URL for reference on User's profile page.
 
 Images are sent to my storage container on Azure, and retrieved from the container and displayed on the page, with newly created URL
 
