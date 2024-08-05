@@ -109,9 +109,9 @@ I added "type": "module" to the root package-json because I was getting an ES5 e
 - <strong>formik:</strong> react library for form building and processing.
 - <strong>yup:</strong> schema builder for value parsing and validation. 
   - There's a copy of ImageUp (4) without formik and yup.
-- <strong>~~cloudinary: </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work.~~
-- <strong>~~Amazon: </strong>media hosting on cloud. Tried but took out.~~
-- <strong>~~Google: </strong>media hosting on cloud. Tried but took out.~~
+- ~~<strong>cloudinary: </strong>media hosting on cloud. Tried to use this for image hosting storage but didn't work.~~
+- ~~<strong>Amazon: </strong>media hosting on cloud. Tried but took out.~~
+- ~~<strong>Google: </strong>media hosting on cloud. Tried but took out.~~
 - <strong>azure/storage-blob: </strong> Client library providing object/file storage in cloud.
 
 1. <u>'const handleUpload':</u> uploads image and also sends to MS Azure cloud container.
