@@ -22,7 +22,9 @@
 
 ## (1) Description
 
-A small project to make an image uploading and hosting app. Image hosting through a free tier account (1 year trial) on Microsoft Azure. Hosed images can be saved to User array and retrieved with URL for reference on User's profile page.
+*** App may not work due to trial expiring
+
+A small project to make an image uploading and hosting app. Image hosting through a free tier account (trial) on Microsoft Azure. Hosed images can be saved to User array and retrieved with URL for reference on User's profile page.
 
 Images are sent to my storage container on Azure, and retrieved from the container and displayed on the page, with newly created URL
 
@@ -31,6 +33,7 @@ Lessons learned from building this project:
 - File uploading
 - File hosting platform
 - Saving and retrieving images to User file
+- Using .env in react
 - Learning to use new tech:
   - Formik;
   - Yup;
@@ -131,7 +134,7 @@ Cloud Storage Services:
 •	Amazon S3: Provides scalable object storage. You can use AWS SDKs or libraries like aws-sdk to interact with S3. [issue: couldn't create user]
 •	Google Cloud Storage: Similar to S3, but part of Google Cloud Platform. Use @google-cloud/storage to interact with it. [had some issue implementing]
 •	Microsoft Azure Blob Storage: Offers scalable storage with integration through Azure SDKs.
-- firebase -- [free but wouldn't work]
+- firebase -- [free but had some issue implementing]
 
  Image Hosting Services:
 
