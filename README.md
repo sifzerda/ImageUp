@@ -97,9 +97,9 @@ I added "type": "module" to the root package-json because I was getting an ES5 e
 
 ## (5) Usage
 
-•	Uploaded images are hosted on MS Azure. 
-•	Image URLs can be saved in local storage and retrieved in the 'Saved' tab.
-•	User can make an account and save image URLs to the user's imageURL model array. These are retrieved in the 'Profile' tab.
++	Uploaded images are hosted on MS Azure. 
++	Image URLs can be saved in local storage and retrieved in the 'Saved' tab.
++	User can make an account and save image URLs to the user's imageURL model array. These are retrieved in the 'Profile' tab.
 
 ## (6) Dev Stuff: Building:
 
