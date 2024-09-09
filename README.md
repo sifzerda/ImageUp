@@ -131,30 +131,30 @@ N/A
 
 Cloud Storage Services:
 
-•	Amazon S3: Provides scalable object storage. You can use AWS SDKs or libraries like aws-sdk to interact with S3. [issue: couldn't create user]
-•	Google Cloud Storage: Similar to S3, but part of Google Cloud Platform. Use @google-cloud/storage to interact with it. [had some issue implementing]
-•	Microsoft Azure Blob Storage: Offers scalable storage with integration through Azure SDKs.
-- firebase -- [free but had some issue implementing]
++	Amazon S3: Provides scalable object storage. You can use AWS SDKs or libraries like aws-sdk to interact with S3. [issue: couldn't create user]
++	Google Cloud Storage: Similar to S3, but part of Google Cloud Platform. Use @google-cloud/storage to interact with it. [had some issue implementing]
++	Microsoft Azure Blob Storage: Offers scalable storage with integration through Azure SDKs.
++ firebase -- [free but had some issue implementing]
 
  Image Hosting Services:
 
-•	Cloudinary: Provides an image and video management service with APIs for uploading, storing, and manipulating images. It also offers free tiers and easy integration. 
-•	Imgur: A popular image hosting service with a straightforward API. Good for smaller projects or testing. (not free)
-•	Flickr: Offers image hosting with API access. It's more oriented towards photo-sharing but can be used for hosting as well.
++	Cloudinary: Provides an image and video management service with APIs for uploading, storing, and manipulating images. It also offers free tiers and easy integration. 
++	Imgur: A popular image hosting service with a straightforward API. Good for smaller projects or testing. (not free)
++	Flickr: Offers image hosting with API access. It's more oriented towards photo-sharing but can be used for hosting as well.
  
 Custom Hosting:
 
-•	Your Own Server: You can host images on your own server or infrastructure. This gives you full control but requires more setup and maintenance.
-•	CDN Services: Using Content Delivery Networks like Cloudflare or Fastly can help cache and serve images more efficiently.
-•  Integrated Hosting with CMS:
-•	WordPress: If using WordPress as a CMS, you can use its media library to host images.
-•	Strapi: A headless CMS that can manage and serve media files. (not free, 14 day trial)
++	Your Own Server: You can host images on your own server or infrastructure. This gives you full control but requires more setup and maintenance.
++	CDN Services: Using Content Delivery Networks like Cloudflare or Fastly can help cache and serve images more efficiently.
++  Integrated Hosting with CMS:
++	WordPress: If using WordPress as a CMS, you can use its media library to host images.
++	Strapi: A headless CMS that can manage and serve media files. (not free, 14 day trial)
 
 ## (9) Bugs: 
 
-- Could not get Firebase cloud service to host images, will try with new component
-- Some of the cloud services have fees attracting use over certain limit
-- There are two separate image modal components (ImageModal and ProfileModal) because ImageModal wouldn't display on the profile for some reason, so I had to make a new one. They each separate entries/selectors in CSS file.
++ Could not get Firebase cloud service to host images, will try with new component
++ Some of the cloud services have fees attracting use over certain limit
++ There are two separate image modal components (ImageModal and ProfileModal) because ImageModal wouldn't display on the profile for some reason, so I had to make a new one. They each separate entries/selectors in CSS file.
 
 ## (10) To do: 
 
